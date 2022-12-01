@@ -1,2 +1,2 @@
-public class CompSwimmer extends Member{
+public class CompSwimmer  {
 }
