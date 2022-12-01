@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -29,7 +30,7 @@ public class CompSwimmer extends Member{
         return coachName;
     }
 
-    public void addEvent(String eventName, Date date){
+    public void addEvent(String eventName, String date) throws ParseException {
         eventList.add(new Event(eventName, date));
     }
 
