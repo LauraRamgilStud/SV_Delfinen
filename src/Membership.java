@@ -1,4 +1,10 @@
 public class Membership {
+    /*//Vi skal ikke have en fee attribute her?
+    Så i stedet for getFee metoden der er nu, kunne
+    vi kalde den assignMembership, hvor den så giver
+    attribute fee sin værdi her i stedet for at returnere den med det samme.
+    Dermed bruger vi kun if-else én gang for hver oprettelse og ikke
+    hver gang vi skal bruge værdien af fee til noget*/
 
     private int age;
     private boolean status;

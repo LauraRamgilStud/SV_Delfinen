@@ -1,8 +1,7 @@
-public class SCDolphin {
-    public static void main(String[] args) {
+import java.text.ParseException;
 
-    System.out.println("HELLO LAURA OG FREJA :)");
-        Database database = new Database();
-        database.addMember();
+public class SCDolphin {
+    public static void main(String[] args) throws ParseException {
+
     }
 }

@@ -1,7 +1,6 @@
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.Comparator;
 
 public class CompSwimmer extends Member{
     Discipline discipline;
@@ -9,7 +8,7 @@ public class CompSwimmer extends Member{
     ArrayList<Event> eventList = new ArrayList<>();
     ArrayList<Training> trainingList = new ArrayList<>();
 
-    public CompSwimmer(String name, Date age,boolean status, Discipline discipline){
+    public CompSwimmer(String name, int age, boolean status, Discipline discipline){
         super(name, age, status);
         this.discipline = discipline;
     }
@@ -32,47 +31,56 @@ public class CompSwimmer extends Member{
 
     public void addEvent(String eventName, String date) throws ParseException {
         eventList.add(new Event(eventName, date));
+        eventList.sort(Comparator.comparing(Event::getDate));
     }
 
     public void removeEvent(String eventName){
-        for(Event e: eventList){
-            if(e.getName().equals(eventName)){
-                eventList.remove(e);
-                System.out.println("Event has been removed");
-            }else{
-                System.out.println("Event does not exist");
+        for(int i = 0; i < eventList.size(); i++){
+            if(eventList.get(i).getName().equals(eventName)){
+                eventList.remove(i);
             }
         }
+    }
+
+    public void addTimeAndPosition(String eventName, int position, String time){
+        addPosition(eventName, position);
+        addTime(eventName, time);
     }
 
     public void addPosition(String eventName, int position){
         for(Event e: eventList){
             if(e.getName().equals(eventName)){
-                e.addPosition(position);
+                e.setPositionPlaced(position);
                 System.out.println("Position: " + position + " is added to event: " + e.getName());
             }
         }
     }
 
-    public void addTraining(Date date, Date time){
+    public void addTime(String eventName, String time){
+        for(Event e: eventList){
+            if(e.getName().equals(eventName)){
+                e.setTime(time);
+                System.out.println("Time: " + e.getTime() + " is added to event " + e.getName());
+            }
+        }
+    }
+
+    public void addTraining(String date, String time) throws ParseException {
         trainingList.add(new Training(date, time));
+        trainingList.sort(Comparator.comparing(Training::getDate));
     }
 
     public void viewTrainings(){
+        System.out.println("******************** " + super.getName() + "'s TRAININGS ********************");
         for(Training t: trainingList){
-            System.out.println("Date: " + t.getDate() + " Time: " + t.getTime());
+            System.out.println("Date: " + t.getDate() + "  Time: " + t.getTime());
         }
     }
 
     public void viewEvents(){
+        System.out.println("********************* " + super.getName() + "'s EVENTS *********************");
         for(Event e: eventList){
-            for(int i = 1; i < eventList.size(); i++){
-                if(e.getPositionPlaced() != 0){
-                    System.out.println(i + ". Event: "+ e.getName() + " Date: " + e.getDate() + " Position: " + e.getPositionPlaced());
-                }else{
-                    System.out.println(i + ". Event: "+ e.getName() + " Date: " + e.getDate());
-                }
-            }
+            System.out.println("Event: "+ e.getName() + "  Date: " + e.getDate() + "  Time: " + e.getTime() + "  Position: " + e.getPositionPlaced());
         }
     }
 }
