@@ -4,5 +4,6 @@ public class SCDolphin {
     System.out.println("HELLO LAURA OG FREJA :)");
         Database database = new Database();
         database.addMember();
+        database.printMemberList();
     }
 }

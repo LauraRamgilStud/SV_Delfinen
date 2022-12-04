@@ -2,6 +2,7 @@ public class Membership {
 
     private int age;
     private boolean status;
+    private double fee;
     private static final double PASSIVE_PRICE = 500.00;
     private static final double JUNIOR_PRICE = 1000.00;
     private static final double SENIOR_PRICE = 1600.00;
@@ -10,6 +11,7 @@ public class Membership {
     Membership(boolean status, int age){
         this.status = status;
         this.age = age;
+        fee = getFee();
     }
 
     public double getFee() {
