@@ -28,6 +28,9 @@ public class Database {
         memberList.add(new Member(name, age, status));
     }
 
+    public void removeMember(){
+
+    }
     public void printMemberList (){
         for(int i = 0 ; i < memberList.size() ; i++){
             System.out.println(memberList.get(i));
