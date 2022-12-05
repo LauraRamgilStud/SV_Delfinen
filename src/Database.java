@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Database {
 
     private double sum = 0;
-    ArrayList<Member> memberList = new ArrayList<>();
+    static ArrayList<Member> memberList = new ArrayList<>();
     public static int calculateAge(LocalDate birthDate){
         LocalDate currentDate = LocalDate.now(); //obtains actual time from systemClock in default Time Zone
 
@@ -15,7 +15,7 @@ public class Database {
             return 0;
         }
     }
-    public void addMember(){
+    public static void addMember(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("====================\nPlease enter\nName: ");
         String name = scanner.nextLine();
@@ -33,16 +33,10 @@ public class Database {
             memberList.removeIf()
         }
     }*/
-    public void printMemberList (){
+    public static void printMemberList (){
         System.out.println("===== List of members =====\n");
         for(int i = 0 ; i < memberList.size() ; i++){
             System.out.println(memberList.get(i));
         }
-    }
-
-    /**/
-
-    public ArrayList<Member> getMemberList() {
-        return memberList;
     }
 }

@@ -9,6 +9,6 @@ public class SCDolphin {
         Database database = new Database();
         database.addMember();
         database.addMember();
-        database.printMemberList();
+        memberList.printMemberList();
     }
 }
