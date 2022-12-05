@@ -32,6 +32,8 @@ public class Member {
         hasPaid = false;
     }
 
+    public boolean getHasPaid() { return hasPaid; }
+
     public String getName(){
         return name;
     }
@@ -46,5 +48,9 @@ public class Member {
 
     public boolean getStatus(){
         return status;
+    }
+
+    public Membership getMembership() {
+        return membership;
     }
 }

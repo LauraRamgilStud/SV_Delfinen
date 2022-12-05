@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Database {
 
-    private double sum = 0;
     private static ArrayList<Member> memberList = new ArrayList<>();
 
     public static void addStandardMember(){
@@ -28,14 +27,15 @@ public class Database {
         //updateDBFile
     }
 
-
-
+    public static ArrayList<Member> getMemberList() {
+        return memberList;
+    }
 
     /*public void removeMember(String name){
-        for(Member member : memberList){
-            memberList.removeIf()
-        }
-    }*/
+            for(Member member : memberList){
+                memberList.removeIf()
+            }
+        }*/
     public static void printMemberList (){
         System.out.println("===== List of members =====\n");
         for(int i = 0 ; i < memberList.size() ; i++){
@@ -55,8 +55,6 @@ public class Database {
             e.printStackTrace();
         }
     }
-
-
 
    public static void readFile(){
        Scanner scanFile = null;

@@ -21,7 +21,6 @@ public class Membership {
     /*//public boolean isCompetitive() {
         return isCompetitive;
     }*/
-
     public String toString() {
         return " " + getFee() + " DKK";
     }
