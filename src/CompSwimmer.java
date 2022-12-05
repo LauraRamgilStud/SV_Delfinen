@@ -12,10 +12,6 @@ public class CompSwimmer extends Member{
         this.discipline = discipline;
     }
 
-    public void setCoachName(String coachName){
-        this.coachName = coachName;
-    }
-
     public void setDiscipline(Discipline discipline){
         this.discipline = discipline;
     }

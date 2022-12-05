@@ -3,15 +3,17 @@ public class Chairman extends Employee{
         super(id);
     }
 
-    System.out.println("Please enter your Chairman id");
-    if (cmScan.next().equals("d72x7G")){
-        System.out.println("Perfect");
-        switch (menu){
-            case mainMenu:
-                menu.printMenu();
-        }
-    }else {
-        System.out.println("WRONG DUDE");
-    }
+    public void menu(){
+        /*Lave Menu for chairman
+            Han skal kunne:
+            - add member
+            - delete member
+            - print member list
+            - logout til hovedmenu (MAIN)
 
+
+            Valgene skal være ud fra tal, altså [view list, press 1]
+
+         */
+    }
 }

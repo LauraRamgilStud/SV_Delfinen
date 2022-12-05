@@ -25,16 +25,8 @@ public class Coach extends Employee{
         this.discipline = discipline;
     }
 
-    public void setCoachId(String coachId){
-        this.coachId = coachId;
-    }
-
     public Discipline getDiscipline() {
         return discipline;
-    }
-
-    public String getCoachId(String coachId){
-        return coachId;
     }
 
     public static void addCompSwimmer(CompSwimmer compSwimmer){
