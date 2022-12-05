@@ -1,6 +1,3 @@
-import java.awt.*;
-import java.util.Scanner;
-
 public class Chairman extends Employee{
     //String menu;
     String chairmanId = "d72x7G";

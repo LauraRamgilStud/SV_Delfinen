@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Cashier extends Employee{
 
     String cashierId = "h3wR98";

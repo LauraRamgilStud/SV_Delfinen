@@ -17,6 +17,8 @@ public class Database {
     }
     public static void addMember(){
         Scanner scanner = new Scanner(System.in);
+        /*System.out.println("Is competitive?");
+        boolean comp = scanner.nextBoolean();*/
         System.out.println("====================\nPlease enter\nName: ");
         String name = scanner.nextLine();
         System.out.println("Birthday: ");
@@ -27,6 +29,15 @@ public class Database {
         boolean status = scanner.nextBoolean();
         memberList.add(new Member(name, age, status));
     }
+
+    public static void addCompetitiveMember(){
+        //intage det samme + disciplin
+        //Ud fra disciplin, tilføj til respektive coach's arraylist
+        //updateDBFile
+    }
+
+
+
 
     /*public void removeMember(String name){
         for(Member member : memberList){

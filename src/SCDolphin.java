@@ -1,14 +1,22 @@
-import java.util.Collections;
-import java.util.List;
-import java.util.ArrayList;
+import javax.xml.crypto.Data;
+
 public class SCDolphin {
     public static void main(String[] args) {
+        Database.readFile();
+        Database.printMemberList();
 
-    System.out.println("HELLO LAURA OG FREJA :)");
-        List<String> list = Collections.synchronizedList(new ArrayList<String>());
-        Database database = new Database();
-        database.addMember();
-        database.addMember();
-        memberList.printMemberList();
+        Database.addStandardMember();
+        Database.printMemberList();
+
+        /*System.out.println("Please enter your Chairman id");
+        if (cmScan.next().equals("d72x7G")){
+            System.out.println("Perfect");
+            switch (menu){
+                case mainMenu:
+                    menu.printMenu();
+            }
+        }else {
+            System.out.println("WRONG DUDE");
+        }*/
     }
 }

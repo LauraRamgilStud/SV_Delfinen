@@ -77,10 +77,10 @@ public class CompSwimmer extends Member{
         }
     }*/
 
-    /*public void viewEvents(){
+    public void viewEvents(){
         System.out.println("********************* " + super.getName() + "'s EVENTS *********************");
         for(Event e: eventList){
             System.out.println("Event: "+ e.getName() + "  Date: " + e.getDate() + "  Time: " + e.getTime() + "  Position: " + e.getPositionPlaced());
         }
-    }*/
+    }
 }
