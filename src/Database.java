@@ -1,21 +1,14 @@
-import java.time.LocalDate;
-import java.time.Period;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Database {
 
     private double sum = 0;
-    static ArrayList<Member> memberList = new ArrayList<>();
-    public static int calculateAge(LocalDate birthDate){
-        LocalDate currentDate = LocalDate.now(); //obtains actual time from systemClock in default Time Zone
+    private static ArrayList<Member> memberList = new ArrayList<>();
 
-        if((birthDate != null) && (currentDate != null)){
-            return Period.between(birthDate, currentDate).getYears();
-        } else {
-            return 0;
-        }
-    }
-    public static void addMember(){
+    public static void addStandardMember(){
         Scanner scanner = new Scanner(System.in);
         /*System.out.println("Is competitive?");
         boolean comp = scanner.nextBoolean();*/
@@ -23,11 +16,10 @@ public class Database {
         String name = scanner.nextLine();
         System.out.println("Birthday: ");
         String inputBirthday = scanner.nextLine();
-        LocalDate birthDate = LocalDate.parse(inputBirthday);       //the parse() method obtains an instance of LocalDate from a text string such as 1992-08-11
-        int age = calculateAge(birthDate);
         System.out.println("Status: ");
         boolean status = scanner.nextBoolean();
-        memberList.add(new Member(name, age, status));
+        memberList.add(new Member(name, inputBirthday, status));
+        updateDBFile();
     }
 
     public static void addCompetitiveMember(){
@@ -48,6 +40,43 @@ public class Database {
         System.out.println("===== List of members =====\n");
         for(int i = 0 ; i < memberList.size() ; i++){
             System.out.println(memberList.get(i));
+        }
+    }
+
+    public static void updateDBFile(){
+        try{
+            File f = new File("memberDB.txt");
+            PrintStream output = new PrintStream(f);
+            for(Member m: memberList){
+                output.println(m.getName() + " " + m.getBirthday() + " " + m.getStatus());
+            }
+
+        } catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+   public static void readFile(){
+       Scanner scanFile = null;
+       try {
+           scanFile = new Scanner(new File("memberDB.txt"));
+       } catch (FileNotFoundException e) {
+           throw new RuntimeException(e);
+       }
+
+       while(scanFile.hasNextLine()){
+            String line = scanFile.nextLine();
+            Scanner scanLine = new Scanner(line);
+            while(scanLine.hasNext()){
+                //boolean isCompetitive = scanLine.nextBoolean();
+                String name = scanLine.next() + " ";
+                name += scanLine.next();
+                String birthday = scanLine.next();
+                boolean status = scanLine.nextBoolean();
+                memberList.add(new Member(name, birthday, status));
+            }
         }
     }
 }

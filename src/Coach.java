@@ -1,15 +1,26 @@
 import java.util.ArrayList;
 public class Coach extends Employee{
-    Discipline discipline;
-    String coachId;
-    ArrayList<CompSwimmer> studentsList = new ArrayList<>();
+    private Discipline discipline;
+    private static ArrayList<CompSwimmer> studentsList = new ArrayList<>();
 
     public Coach(String id, Discipline discipline){
         super(id);
         this.discipline = discipline;
     }
 
-    /* Getter&setter SLET*/
+    public void menu(){
+        /*Lave Menu for coach
+            Han skal kunne:
+            - view student list
+            - tilføje, redigere og delete training
+            - tilføje, redigere og delete event
+            - logout til hovedmenu (MAIN)
+
+            Valgene skal være ud fra tal, altså [view list, press 1]
+
+         */
+    }
+
     public void setDiscipline(Discipline discipline) {
         this.discipline = discipline;
     }
@@ -26,17 +37,16 @@ public class Coach extends Employee{
         return coachId;
     }
 
-    public void addCompSwimmer(String id, Discipline discipline){
-        studentsList.add(new CompSwimmer(id, discipline));
+    public static void addCompSwimmer(CompSwimmer compSwimmer){
+        studentsList.add(compSwimmer);
     }
-
-    public void removeCompSwimmer(String id){
+    public void removeCompSwimmer(String name){
         for (CompSwimmer cs: studentsList){
-            if (cs.getCoachId().equals(id)){
+            if (cs.getName().equals(name)){
                 studentsList.remove(cs);
-                System.out.println("Competition swimmer has been removed");
+                System.out.println("Competitive swimmer has been removed");
             }else{
-                System.out.println("The competition swimmer does not exist");
+                System.out.println("The competitive swimmer does not exist");
             }
         }
     }

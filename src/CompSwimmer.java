@@ -4,12 +4,11 @@ import java.util.Comparator;
 
 public class CompSwimmer extends Member{
     Discipline discipline;
-    String coachName;
     ArrayList<Event> eventList = new ArrayList<>();
     ArrayList<Training> trainingList = new ArrayList<>();
 
-    public CompSwimmer(String name, int age, boolean status, Discipline discipline){
-        super(name, age, status);
+    public CompSwimmer(String name, String birthday, boolean status, Discipline discipline){
+        super(name, birthday, status);
         this.discipline = discipline;
     }
 
@@ -23,10 +22,6 @@ public class CompSwimmer extends Member{
 
     public Discipline getDiscipline(){
         return discipline;
-    }
-
-    public String getCoachName(){
-        return coachName;
     }
 
     public void addEvent(String eventName, String date) throws ParseException {
@@ -70,12 +65,12 @@ public class CompSwimmer extends Member{
         trainingList.sort(Comparator.comparing(Training::getDate));
     }
 
-    /*public void viewTrainings(){
+    public void viewTrainings(){
         System.out.println("******************** " + super.getName() + "'s TRAININGS ********************");
         for(Training t: trainingList){
             System.out.println("Date: " + t.getDate() + "  Time: " + t.getTime());
         }
-    }*/
+    }
 
     public void viewEvents(){
         System.out.println("********************* " + super.getName() + "'s EVENTS *********************");
