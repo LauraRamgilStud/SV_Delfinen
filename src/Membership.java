@@ -5,6 +5,7 @@ public class Membership {
     attribute fee sin værdi her i stedet for at returnere den med det samme.
     Dermed bruger vi kun if-else én gang for hver oprettelse og ikke
     hver gang vi skal bruge værdien af fee til noget*/
+    /*Jeg kan godt se, hvad du mener, men bliver alderen så automatisk opdateret? :o */
 
     private int age;
     private boolean status;
@@ -20,6 +21,10 @@ public class Membership {
         fee = getFee();
     }
 
+    public String toString() {
+        return " " + fee + " DKK";
+    }
+
     public double getFee() {
         if (status) {
             if (age < 18) {
@@ -29,7 +34,6 @@ public class Membership {
             } else {
                 return SENIOR_PRICE;
             }
-
         } else {
             return PASSIVE_PRICE;
         }

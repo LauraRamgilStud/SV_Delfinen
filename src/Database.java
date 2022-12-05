@@ -16,7 +16,7 @@ public class Database {
         }
     }
     public void addMember(){
-        Scanner scanner = new Scanner(System.in);                   // take input from user and store it in variable name, age, status
+        Scanner scanner = new Scanner(System.in);
         System.out.println("====================\nPlease enter\nName: ");
         String name = scanner.nextLine();
         System.out.println("Birthday: ");
@@ -28,22 +28,21 @@ public class Database {
         memberList.add(new Member(name, age, status));
     }
 
-    public void removeMember(){
-
-    }
+    /*public void removeMember(String name){
+        for(Member member : memberList){
+            memberList.removeIf()
+        }
+    }*/
     public void printMemberList (){
+        System.out.println("===== List of members =====\n");
         for(int i = 0 ; i < memberList.size() ; i++){
             System.out.println(memberList.get(i));
         }
     }
 
-    public double actualIncome{
-        for(int i = 0 ; i < memberList.size() ; i++){
-            if (hasPaid == true){
-                return sum += memberList.get(i).getFee();
-            } else {
-                return sum += 0;
-            }
-        }
+    /**/
+
+    public ArrayList<Member> getMemberList() {
+        return memberList;
     }
 }

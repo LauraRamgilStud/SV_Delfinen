@@ -70,17 +70,17 @@ public class CompSwimmer extends Member{
         trainingList.sort(Comparator.comparing(Training::getDate));
     }
 
-    public void viewTrainings(){
+    /*public void viewTrainings(){
         System.out.println("******************** " + super.getName() + "'s TRAININGS ********************");
         for(Training t: trainingList){
             System.out.println("Date: " + t.getDate() + "  Time: " + t.getTime());
         }
-    }
+    }*/
 
-    public void viewEvents(){
+    /*public void viewEvents(){
         System.out.println("********************* " + super.getName() + "'s EVENTS *********************");
         for(Event e: eventList){
             System.out.println("Event: "+ e.getName() + "  Date: " + e.getDate() + "  Time: " + e.getTime() + "  Position: " + e.getPositionPlaced());
         }
-    }
+    }*/
 }

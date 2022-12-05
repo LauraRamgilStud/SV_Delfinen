@@ -7,13 +7,13 @@ public class Member {
     private Membership membership;
 
     public String toString() {
-        return "===== List of members =====\n" +
+        return
                 "Name: " + name +
                 "\nAge: " + age +
                 "\nActive: " + status +
-                "\nPaid: " + hasPaid //+
-               // "\nFee: " + Membership.getFee();
-                ;
+                "\nPaid: " + hasPaid +
+                "\nFee:" + membership +
+                "\n========================";
     }
 
     public Member(String name, int age, boolean status) {
@@ -21,5 +21,13 @@ public class Member {
         this.age = age;
         this.status = status;
         this.membership = new Membership(status, age);
+    }
+
+    public void payFee(){
+        hasPaid = true;
+    }
+
+    public void openFee(){
+        hasPaid = false;
     }
 }
