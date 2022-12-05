@@ -11,7 +11,6 @@ public class Accounting {
             }
         }
     }
-
     public static void calculateDifference(){
 
     }
@@ -26,6 +25,7 @@ public class Accounting {
         for(Member member : Database.getMemberList()){
             if(member.getHasPaid()){        //(member.getHasPaid() == true)
                 sum += member.getMembership().getFee();
+                System.out.println("Actual Income " + sum + " DKK");
             } else {
                 sum += 0;
             }

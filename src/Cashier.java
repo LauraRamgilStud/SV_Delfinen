@@ -34,6 +34,7 @@ public class Cashier extends Employee{
                     System.out.println("Invalid Input.");
                     break;
             }
+            input = scanner.nextInt();
         }
     }
 }
