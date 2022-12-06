@@ -42,14 +42,15 @@ public class Database {
 }
 
 
-    public static void printMemberList (){
-        System.out.println("===== List of members =====\n");
-        for(int i = 0 ; i < memberList.size() ; i++){
-            System.out.println(memberList.get(i));
+        public static void printMemberList (){
+            System.out.println("===== List of members =====\n");
+            for(int i = 0 ; i < memberList.size() ; i++){
+                System.out.println(memberList.get(i));
+            }
         }
-    }
 
-    public static void updateDBFile(){
+
+        public static void updateDBFile(){
         try{
             File f = new File("memberDB.txt");
             PrintStream output = new PrintStream(f);

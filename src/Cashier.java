@@ -13,7 +13,7 @@ public class Cashier extends Employee{
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
 
-        while(input != 5){
+        //while(input != 5){
             switch(input){
                 case 1:
                     // View Overdue Invoices
@@ -31,11 +31,14 @@ public class Cashier extends Employee{
                     // Change Payment Status
                     Accounting.changePaymentStatus();
                     break;
+                case 5:
+                    // Change Payment Status
+                    SCDolphin.main(null);
+                    break;
                 default:
                     System.out.println("Invalid Input.");
                     break;
             }
-            input = scanner.nextInt();
+            //input = scanner.nextInt();
         }
     }
-}

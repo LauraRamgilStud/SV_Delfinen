@@ -16,6 +16,23 @@ public class Member {
                 "\nFee:" + getMembership().getFee() +
                 "\n========================";
     }
+
+    /*public void printMember(){
+        System.out.println("Name: " + getName());
+        System.out.println("Birthday: " + getBirthday());
+        if(getStatus()){
+            System.out.println("Status: active");
+        } else {
+            System.out.println("Status: passive");
+        }
+        if(getHasPaid()){
+            System.out.println("Payment status: paid");
+        } else {
+            System.out.println("Payment status: unpaid");
+        }
+        System.out.println("Fee: " + getMembership().getFee());
+    }*/
+
     public Member(String name, String birthday, boolean status) {
         this.name = name;
         this.birthday = birthday;
