@@ -1,6 +1,0 @@
-Name: Laura Ramgil
-Birthday: 31-03-1999
-Active: true
-Paid: false
-Fee: 1600.0 DKK
-========================
