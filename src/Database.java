@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Database {
 
-    private double sum = 0;
-    private static final ArrayList<Member> memberList = new ArrayList<>();
+    private static ArrayList<Member> memberList = new ArrayList<>();
 
     public static void addStandardMember(){
         Scanner scanner = new Scanner(System.in);
@@ -44,17 +43,29 @@ public class Database {
         updateDBFile();
     }
 
-    public static void removeMember(String name){
-        memberList.removeIf(m -> m.getName().equals(name));
-        updateDBFile();
+    public static ArrayList<Member> getMemberList() {
+        return memberList;
     }
-
-    public static void printMemberList (){
-        System.out.println("===== List of members =====\n");
-        for (Member member : memberList) {
-            System.out.println(member);
+    public static void removeMemberByName(){
+    Scanner scanner = new Scanner(System.in);
+    String input = scanner.nextLine();
+        for(Member member : Database.getMemberList()){
+        if(input.equals(member.getName())){
+            Database.getMemberList().remove(member);
+            updateDBFile();
         }
     }
+}
+
+
+        public static void printMemberList (){
+            System.out.println("===== List of members =====\n");
+            for(Member member : memberList){
+                member.printMember();
+            }
+            }
+
+
 
     public static void updateDBFile(){
         try{
@@ -67,6 +78,7 @@ public class Database {
                 outputReadOnly.println(toStringReadOnly(m));
                 output.println(m.toString());
             }
+            // + hasPaid
 
         } catch(FileNotFoundException e){
             e.printStackTrace();
@@ -86,9 +98,9 @@ public class Database {
    public static void readFile(){
        Scanner scanFile = null;
        try {
-           scanFile = new Scanner(new File("memberDBReadOnly.txt"));
+           scanFile = new Scanner(new File("memberDB.txt"));
        } catch (FileNotFoundException e) {
-           e.printStackTrace();
+           throw new RuntimeException(e);
        }
 
        while(scanFile.hasNextLine()){
@@ -111,6 +123,13 @@ public class Database {
                     Discipline dis = Discipline.valueOf(scanLine.next());
                     memberList.add(new CompSwimmer(name, birthday, status, dis));
                 }
+
+                /*
+                boolean hasPaid = scanLine.nextBoolean();
+                Member member = new Member(name, birthday, status);
+                member.setHasPaid(hasPaid);
+                memberList.add(member);
+                 */
             }
         }
     }

@@ -1,20 +1,36 @@
-import java.util.Scanner;
 public class Member {
-    private boolean isCompetitive;
     private String name;
     private String birthday;
     private boolean status;
     private boolean hasPaid;
+    private boolean isCompetitive;
     private Membership membership;
 
     public String toString() {
         return
-                "Name: " + name +
-                "\nBirthday: " + birthday +
-                "\nActive: " + status +
-                "\nPaid: " + hasPaid +
-                "\nFee:" + membership +
+                "Name: " + getName() +
+                "\nBirthday: " + getBirthday() +
+                "\nActive: " + getStatus() +
+                "\nPaid: " + getHasPaid() +
+                "\nFee:" + getMembership().getFee() +
                 "\n========================";
+    }
+
+    public void printMember(){
+        System.out.println("======================");
+        System.out.println("Name: " + getName());
+        System.out.println("Birthday: " + getBirthday());
+        if(getStatus()){
+            System.out.println("Status: active");
+        } else {
+            System.out.println("Status: passive");
+        }
+        if(getHasPaid()){
+            System.out.println("Payment status: paid");
+        } else {
+            System.out.println("Payment status: unpaid");
+        }
+        System.out.println("Fee: " + getMembership().getFee());
     }
 
     public Member(String name, String birthday, boolean status) {
@@ -23,28 +39,11 @@ public class Member {
         this.status = status;
         this.membership = new Membership(status, birthday);
     }
-
-    public void payFee(){
-        hasPaid = true;
-    }
-
-    public void openFee(){
-        hasPaid = false;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public boolean isCompetitive() {
-        return isCompetitive;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public boolean getStatus(){
-        return status;
-    }
+    public boolean getHasPaid() { return hasPaid; }
+    public void setHasPaid(boolean hasPaid) { this.hasPaid = hasPaid; }
+    public String getName(){ return name; }
+    public boolean isCompetitive() { return isCompetitive; }
+    public String getBirthday() { return birthday; }
+    public boolean getStatus(){ return status; }
+    public Membership getMembership() { return membership; }
 }
