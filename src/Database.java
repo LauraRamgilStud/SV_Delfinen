@@ -30,10 +30,15 @@ public class Database {
     public static ArrayList<Member> getMemberList() {
         return memberList;
     }
-
-    /*public void removeMember(String name){
-            for(Member member : memberList){
-                memberList.removeIf()
+    public static void removeMemberByName(){
+    Scanner scanner = new Scanner(System.in);
+    String input = scanner.nextLine();
+        for(Member member : Database.getMemberList()){
+        if(input.equals(member.getName()){
+            Database.getMemberList().remove(member);
+        }
+    }
+}
             }
         }*/
     public static void printMemberList (){
