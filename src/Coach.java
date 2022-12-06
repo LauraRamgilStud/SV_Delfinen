@@ -1,14 +1,49 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Coach extends Employee{
     private Discipline discipline;
     private static ArrayList<CompSwimmer> studentsList = new ArrayList<>();
-
     public Coach(String id, Discipline discipline){
         super(id);
         this.discipline = discipline;
     }
+    public void coachMenu(){
+        System.out.println("\n====== MENU =====");
+        System.out.println("[1] View student list");
+        System.out.println("[2] Add, edit or delete training");
+        System.out.println("[3] Add, edit or delete event");
+        System.out.println("[0] Log Out");
+        System.out.println("=================\n");
 
-    public void menu(){
+        Scanner scanner = new Scanner(System.in);
+        int input; scanner.nextInt();
+
+        while (input != 0){
+            switch (input){
+                case 1:
+                    //studentList
+                    break;
+                case 2:
+                    //training
+                    break;
+                case 3:
+                    //event
+                    break;
+                default:
+                    //leave
+                    break;
+            }
+            System.out.println("\n====== MENU =====");
+            System.out.println("[1] View student list");
+            System.out.println("[2] Add, edit or delete training");
+            System.out.println("[3] Add, edit or delete event");
+            System.out.println("[0] Log Out");
+            System.out.println("=================\n");
+        }
+
+        //input scanner.nextInt();
+
         /*Lave Menu for coach
             Han skal kunne:
             - view student list
@@ -16,9 +51,7 @@ public class Coach extends Employee{
             - tilføje, redigere og delete event
             - logout til hovedmenu (MAIN)
 
-            Valgene skal være ud fra tal, altså [view list, press 1]
-
-         */
+            Valgene skal være ud fra tal, altså [view list, press 1]*/
     }
 
     public void setDiscipline(Discipline discipline) {
@@ -27,19 +60,5 @@ public class Coach extends Employee{
 
     public Discipline getDiscipline() {
         return discipline;
-    }
-
-    public static void addCompSwimmer(CompSwimmer compSwimmer){
-        studentsList.add(compSwimmer);
-    }
-    public void removeCompSwimmer(String name){
-        for (CompSwimmer cs: studentsList){
-            if (cs.getName().equals(name)){
-                studentsList.remove(cs);
-                System.out.println("Competitive swimmer has been removed");
-            }else{
-                System.out.println("The competitive swimmer does not exist");
-            }
-        }
     }
 }

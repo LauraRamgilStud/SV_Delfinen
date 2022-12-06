@@ -30,9 +30,9 @@ public class Chairman extends Employee{
                    System.out.println("Edit not implemented yet");
                    break;
                case 3:
-                   System.out.println("Enter name of member to remove: ");
-                   scanInput.nextLine();
-                   Database.removeMember(scanInput.nextLine());
+                   /*System.out.println("Enter name of member to remove: ");
+                   scanInput.nextLine();*/
+                   Database.removeMemberByName();
                    break;
                case 4:
                    Database.printMemberList();

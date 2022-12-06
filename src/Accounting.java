@@ -7,10 +7,8 @@ public class Accounting {
         for(Member member : Database.getMemberList()){
             if (!member.getHasPaid()){  //if (member.getHasPaid() == false)
                 System.out.println(member);
-            } else {
-                System.out.println("No overdue Invoices (Yay!)");
             }
-        }
+        } System.out.println("No overdue Invoices (Yay!)");
     }
     public static void calculateDifference(){
 
@@ -18,8 +16,8 @@ public class Accounting {
     public static void calculateExpectedIncome(){
         for(Member member : Database.getMemberList()){
             sum += member.getMembership().getFee();
-            System.out.println("Expected Income: " + sum + " DKK");
         }
+        System.out.println("Expected Income: " + sum + " DKK");
     }
 
     public static void calculateActualIncome(){
@@ -30,7 +28,7 @@ public class Accounting {
             } else {
                 sum += 0;
             }
-        }
+        } System.out.println("Actual Income: " + sum + " DKK");
     }
     public static void changePaymentStatus(){
         System.out.println("[1] Change specific payment status\n[2] Change all payment status'");
@@ -48,7 +46,6 @@ public class Accounting {
                 System.out.println("Invalid input.");
                 break;
         }
-
     }
     public static void changeSpecificPayment(){
         Scanner scanner = new Scanner(System.in);
@@ -65,10 +62,8 @@ public class Accounting {
                     member.setHasPaid(false);
                     Database.updateDBFile();
                 }
-            } else {
-                System.out.println("Invalid input.");
             }
-        }
+        } System.out.println("Invalid input.");
     }
 
     public static void changeAllPaymentStatus(){

@@ -3,10 +3,9 @@ public class Member {
     private String birthday;
     private boolean status;
     private boolean hasPaid;
-    private boolean isCompetitive;
     private Membership membership;
 
-    public String toString() {
+    public String toString(){
         return
                 "Name: " + getName() +
                 "\nBirthday: " + getBirthday() +
@@ -42,7 +41,6 @@ public class Member {
     public boolean getHasPaid() { return hasPaid; }
     public void setHasPaid(boolean hasPaid) { this.hasPaid = hasPaid; }
     public String getName(){ return name; }
-    public boolean isCompetitive() { return isCompetitive; }
     public String getBirthday() { return birthday; }
     public boolean getStatus(){ return status; }
     public Membership getMembership() { return membership; }

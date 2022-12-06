@@ -14,6 +14,7 @@ public class Database {
         System.out.println("Birthday: ");
         String inputBirthday = scanner.nextLine();
         System.out.println("Status: ");
+        //intast nummer 1 eller 2 i stedet for
         boolean status = scanner.nextBoolean();
         memberList.add(new Member(name, inputBirthday, status));
         updateDBFile();
@@ -26,6 +27,7 @@ public class Database {
         System.out.println("Birthday: ");
         String inputBirthday = scanner.nextLine();
         System.out.println("Status: ");
+        //intast nummer 1 eller 2 i stedet for
         boolean status = scanner.nextBoolean();
         System.out.println("Discipline [1. Backcrawl], [2. Crawl], [3. Breaststroke] or [4. Butterfly]: ");
         int dis = scanner.nextInt();
@@ -48,6 +50,7 @@ public class Database {
     }
     public static void removeMemberByName(){
     Scanner scanner = new Scanner(System.in);
+    System.out.println("Enter name: ");
     String input = scanner.nextLine();
         for(Member member : Database.getMemberList()){
         if(input.equals(member.getName())){
@@ -76,9 +79,9 @@ public class Database {
 
             for(Member m: memberList){
                 outputReadOnly.println(toStringReadOnly(m));
-                output.println(m.toString());
+                //find ud af dette hehe
+                //output.println(m.printMember());
             }
-            // + hasPaid
 
         } catch(FileNotFoundException e){
             e.printStackTrace();
@@ -88,49 +91,38 @@ public class Database {
     public static String toStringReadOnly(Object object){
         if(object instanceof CompSwimmer){
             CompSwimmer compSwimmer = (CompSwimmer) object;
-            return 2 + " " + compSwimmer.getName() + " " + compSwimmer.getBirthday() + " " + compSwimmer.getStatus() + " " + compSwimmer.getDiscipline();
+            return 2 + "\n" + compSwimmer.getName() + "\n" + compSwimmer.getBirthday() + "\n" + compSwimmer.getStatus() + "\n" + compSwimmer.getDiscipline() + "\n" + compSwimmer.getHasPaid();
         } else {
             Member member = (Member) object;
-            return 1 + " " + member.getName() + " " + member.getBirthday() + " " + member.getStatus();
+            return 1 + "\n" + member.getName() + "\n" + member.getBirthday() + "\n" + member.getStatus() + "\n" + member.getHasPaid();
         }
     }
 
-   public static void readFile(){
-       Scanner scanFile = null;
+   public static void readFile(){Scanner scanFile = null;
        try {
-           scanFile = new Scanner(new File("memberDB.txt"));
-       } catch (FileNotFoundException e) {
+           scanFile = new Scanner(new File("memberDBReadOnly.txt"));
+      } catch (FileNotFoundException e) {
            throw new RuntimeException(e);
        }
-
        while(scanFile.hasNextLine()){
-            String line = scanFile.nextLine();
-            Scanner scanLine = new Scanner(line);
-            while(scanLine.hasNext()){
-                int nr = scanLine.nextInt();
-                if(nr == 1){
-                    String name = scanLine.next() + " ";
-                    name += scanLine.next();
-                    //læs ind som navn indtil der er et tal
-                    String birthday = scanLine.next();
-                    boolean status = scanLine.nextBoolean();
-                    memberList.add(new Member(name, birthday, status));
-                } else if(nr == 2){
-                    String name = scanLine.next() + " ";
-                    name += scanLine.next();
-                    String birthday = scanLine.next();
-                    boolean status = scanLine.nextBoolean();
-                    Discipline dis = Discipline.valueOf(scanLine.next());
-                    memberList.add(new CompSwimmer(name, birthday, status, dis));
+            //while(!scanFile.nextLine().isEmpty()){
+                String num = scanFile.nextLine();
+                String name = scanFile.nextLine();
+                String birthday = scanFile.nextLine();
+                boolean status = Boolean.parseBoolean(scanFile.nextLine());
+                if(num.equals("2")){
+                    Discipline discipline = Discipline.valueOf(scanFile.nextLine());
+                    boolean hasPaid = scanFile.nextBoolean();
+                    CompSwimmer compSwimmer = new CompSwimmer(name, birthday, status, discipline);
+                    compSwimmer.setHasPaid(hasPaid);
+                    memberList.add(compSwimmer);
+                } else {
+                    boolean hasPaid = scanFile.nextBoolean();
+                    Member member = new Member(name, birthday, status);
+                    member.setHasPaid(hasPaid);
+                    memberList.add(member);
                 }
-
-                /*
-                boolean hasPaid = scanLine.nextBoolean();
-                Member member = new Member(name, birthday, status);
-                member.setHasPaid(hasPaid);
-                memberList.add(member);
-                 */
-            }
+           // }
         }
     }
 }
