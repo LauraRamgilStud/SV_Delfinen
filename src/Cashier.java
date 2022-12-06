@@ -29,6 +29,7 @@ public class Cashier extends Employee{
                     break;
                 case 4:
                     // Change Payment Status
+                    Accounting.changePaymentStatus();
                     break;
                 default:
                     System.out.println("Invalid Input.");

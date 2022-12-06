@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class SCDolphin {
     public static void main(String[] args) {
         Database.readFile();
-        //Database.printMemberList();
+        Database.printMemberList();
 
         //Database.addStandardMember();
         //Database.printMemberList();

@@ -33,14 +33,16 @@ public class Accounting {
         }
     }
     public static void changePaymentStatus(){
+        System.out.println("[1] Change specific payment status\n[2] Change all payment status'");
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
-        System.out.println("[1] Change specific payment status\n[2] Change all payment status'");
 
         switch (input){
             case 1:
+                Accounting.changeSpecificPayment();
                 break;
             case 2:
+                Accounting.changeAllPaymentStatus();
                 break;
             default:
                 System.out.println("Invalid input.");
@@ -48,13 +50,38 @@ public class Accounting {
         }
 
     }
-
     public static void changeSpecificPayment(){
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter member's name: ");
         String input = scanner.nextLine();
         for(Member member : Database.getMemberList()){
-            if(input.equals(member.getName()){
-                Database.getMemberList().remove(member);
+            if(input.equals(member.getName())){
+                System.out.println("Change status to: ");
+                boolean inputBoolean = scanner.nextBoolean();
+                if(inputBoolean) {
+                    member.setHasPaid(true);
+                    Database.updateDBFile();
+                } else {
+                    member.setHasPaid(false);
+                    Database.updateDBFile();
+                }
+            } else {
+                System.out.println("Invalid input.");
+            }
+        }
+    }
+
+    public static void changeAllPaymentStatus(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Change payment status to: ");
+        boolean input = scanner.nextBoolean();
+        for(Member member : Database.getMemberList()){
+            if(input){
+                member.setHasPaid(true);
+                System.out.println("The payment status of each member has been changed to \"paid\".");
+            } else {
+                member.setHasPaid(false);
+                System.out.println("The payment status of each member has been changed to \"unpaid\".");
             }
         }
     }

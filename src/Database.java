@@ -34,13 +34,14 @@ public class Database {
     Scanner scanner = new Scanner(System.in);
     String input = scanner.nextLine();
         for(Member member : Database.getMemberList()){
-        if(input.equals(member.getName()){
+        if(input.equals(member.getName())){
             Database.getMemberList().remove(member);
+            updateDBFile();
         }
     }
 }
-            }
-        }*/
+
+
     public static void printMemberList (){
         System.out.println("===== List of members =====\n");
         for(int i = 0 ; i < memberList.size() ; i++){
@@ -53,7 +54,7 @@ public class Database {
             File f = new File("memberDB.txt");
             PrintStream output = new PrintStream(f);
             for(Member m: memberList){
-                output.println(m.getName() + " " + m.getBirthday() + " " + m.getStatus());
+                output.println(m.getName() + " " + m.getBirthday() + " " + m.getStatus() + " " + m.getHasPaid());
             }
 
         } catch(FileNotFoundException e){
@@ -78,6 +79,7 @@ public class Database {
                 name += scanLine.next();
                 String birthday = scanLine.next();
                 boolean status = scanLine.nextBoolean();
+                boolean hasPaid = scanLine.nextBoolean();
                 memberList.add(new Member(name, birthday, status));
             }
         }
