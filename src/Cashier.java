@@ -1,10 +1,10 @@
 import java.util.Scanner;
-
-public class Cashier extends Employee{
+public class Cashier extends Employee {
     public Cashier(String id) {
         super(id);
     }
-    public static void cashierMenu(){
+
+    public static void cashierMenu() {
         System.out.println("[1] Overdue Invoices");
         System.out.println("[2] Expected Income");
         System.out.println("[3] Actual Income");
@@ -13,8 +13,8 @@ public class Cashier extends Employee{
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
 
-        //while(input != 5){
-            switch(input){
+        while (input != 5) {
+            switch (input) {
                 case 1:
                     // View Overdue Invoices
                     Accounting.viewOverdueInvoices();
@@ -31,14 +31,20 @@ public class Cashier extends Employee{
                     // Change Payment Status
                     Accounting.changePaymentStatus();
                     break;
-                case 5:
-                    // Change Payment Status
-                    SCDolphin.main(null);
-                    break;
+                //case 5:
+                // Change Payment Status
+                //SCDolphin.main(null);
+                // break;
                 default:
                     System.out.println("Invalid Input.");
                     break;
             }
-            //input = scanner.nextInt();
+            System.out.println("[1] Overdue Invoices");
+            System.out.println("[2] Expected Income");
+            System.out.println("[3] Actual Income");
+            System.out.println("[4] Change Payment Status");
+            System.out.println("[5] Log Out");
+            input = scanner.nextInt();
         }
     }
+}

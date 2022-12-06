@@ -44,10 +44,15 @@ public class Database {
 
         public static void printMemberList (){
             System.out.println("===== List of members =====\n");
-            for(int i = 0 ; i < memberList.size() ; i++){
-                System.out.println(memberList.get(i));
+            /*for(int i = 0 ; i < memberList.size() ; i++){
+                System.out.println(memberList.get(i));*/
+            for(Member member : memberList){
+                member.printMember();
             }
-        }
+
+
+            }
+
 
 
         public static void updateDBFile(){
@@ -81,7 +86,9 @@ public class Database {
                 String birthday = scanLine.next();
                 boolean status = scanLine.nextBoolean();
                 boolean hasPaid = scanLine.nextBoolean();
-                memberList.add(new Member(name, birthday, status));
+                Member member = new Member(name, birthday, status);
+                member.setHasPaid(hasPaid);
+                memberList.add(member);
             }
         }
     }

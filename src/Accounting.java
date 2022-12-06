@@ -78,9 +78,11 @@ public class Accounting {
         for(Member member : Database.getMemberList()){
             if(input){
                 member.setHasPaid(true);
+                Database.updateDBFile();
                 System.out.println("The payment status of each member has been changed to \"paid\".");
             } else {
                 member.setHasPaid(false);
+                Database.updateDBFile();
                 System.out.println("The payment status of each member has been changed to \"unpaid\".");
             }
         }

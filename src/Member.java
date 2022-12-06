@@ -1,4 +1,3 @@
-import java.util.Scanner;
 public class Member {
     private String name;
     private String birthday;
@@ -17,7 +16,8 @@ public class Member {
                 "\n========================";
     }
 
-    /*public void printMember(){
+    public void printMember(){
+        System.out.println("======================");
         System.out.println("Name: " + getName());
         System.out.println("Birthday: " + getBirthday());
         if(getStatus()){
@@ -31,7 +31,7 @@ public class Member {
             System.out.println("Payment status: unpaid");
         }
         System.out.println("Fee: " + getMembership().getFee());
-    }*/
+    }
 
     public Member(String name, String birthday, boolean status) {
         this.name = name;

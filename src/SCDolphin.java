@@ -1,6 +1,4 @@
-import javax.xml.crypto.Data;
 import java.util.Scanner;
-
 public class SCDolphin {
     public static void main(String[] args) {
         Database.readFile();
@@ -27,6 +25,8 @@ public class SCDolphin {
                     System.out.println("Invalid input.");
                     break;
             }
+            System.out.println("You are logged out.\n\nEnter ID: ");
+            input = scanner.nextInt();
         }
 
 
