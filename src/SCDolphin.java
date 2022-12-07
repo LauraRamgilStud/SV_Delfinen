@@ -3,10 +3,7 @@ public class SCDolphin {
     public static void main(String[] args) {
         Database.readFile();
         Database.printMemberList();
-
-        //Database.addStandardMember();
-        //Database.printMemberList();
-
+        Chairman chairman = new Chairman("122");
         System.out.println("Program start successful\n\nPlease enter your ID: ");
 
         Scanner scanner = new Scanner(System.in);
@@ -15,6 +12,7 @@ public class SCDolphin {
         while (input != 0000){
             switch(input){
                 case 1:
+                    chairman.menu();
                     break;
                 case 2:
                     Cashier.cashierMenu();
@@ -28,19 +26,5 @@ public class SCDolphin {
             System.out.println("You are logged out.\n\nEnter ID: ");
             input = scanner.nextInt();
         }
-
-
-
-
-        /*System.out.println("Please enter your Chairman id");
-        if (cmScan.next().equals("d72x7G")){
-            System.out.println("Perfect");
-            switch (menu){
-                case mainMenu:
-                    menu.printMenu();
-            }
-        }else {
-            System.out.println("WRONG DUDE");
-        }*/
     }
 }

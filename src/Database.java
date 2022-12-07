@@ -46,26 +46,45 @@ public class Database {
     public static ArrayList<Member> getMemberList() {
         return memberList;
     }
+
+    //Kig på
     public static void removeMemberByName(){
-    Scanner scanner = new Scanner(System.in);
-    String input = scanner.nextLine();
-        for(Member member : Database.getMemberList()){
-        if(input.equals(member.getName())){
-            Database.getMemberList().remove(member);
-            updateDBFile();
+        System.out.println("Enter name of member to remove");
+        Scanner scanner = new Scanner(System.in);
+        boolean control = true;
+        while(control){
+            try{
+                String name = scanner.nextLine();
+                for(Member m: memberList){
+                    if(m.getName().equals(name)){
+                        System.out.println("Member does exist.");
+                        System.out.println("Are you sure you want to delete member " + name + "?");
+                        System.out.println("[1] Yes\n[2] No");
+                        int remove = scanner.nextInt();
+                        if(remove == 1){
+                            memberList.removeIf(m1 -> m1.getName().equals(name));
+                            control = false;
+                            break;
+                        }else{
+                            System.out.println("Cancellation of removal of member " + name);
+                            control = false;
+                        }
+                    }
+                }
+            }catch (Exception e){
+                System.out.println("Input not valid");
+                e.printStackTrace();
+            }
         }
+        updateDBFile();
     }
-}
 
-
-        public static void printMemberList (){
+    public static void printMemberList (){
             System.out.println("===== List of members =====\n");
             for(Member member : memberList){
-                member.printMember();
+                System.out.println(member.toString());
             }
             }
-
-
 
     public static void updateDBFile(){
         try{
@@ -78,59 +97,54 @@ public class Database {
                 outputReadOnly.println(toStringReadOnly(m));
                 output.println(m.toString());
             }
-            // + hasPaid
-
         } catch(FileNotFoundException e){
             e.printStackTrace();
-        }
-    }
-
-    public static String toStringReadOnly(Object object){
-        if(object instanceof CompSwimmer){
-            CompSwimmer compSwimmer = (CompSwimmer) object;
-            return 2 + " " + compSwimmer.getName() + " " + compSwimmer.getBirthday() + " " + compSwimmer.getStatus() + " " + compSwimmer.getDiscipline();
-        } else {
-            Member member = (Member) object;
-            return 1 + " " + member.getName() + " " + member.getBirthday() + " " + member.getStatus();
         }
     }
 
    public static void readFile(){
        Scanner scanFile = null;
        try {
-           scanFile = new Scanner(new File("memberDB.txt"));
+           scanFile = new Scanner(new File("memberDBReadOnly.txt"));
        } catch (FileNotFoundException e) {
            throw new RuntimeException(e);
        }
 
-       while(scanFile.hasNextLine()){
+       while (scanFile.hasNextLine()) {
             String line = scanFile.nextLine();
             Scanner scanLine = new Scanner(line);
-            while(scanLine.hasNext()){
-                int nr = scanLine.nextInt();
-                if(nr == 1){
-                    String name = scanLine.next() + " ";
-                    name += scanLine.next();
-                    //læs ind som navn indtil der er et tal
+            scanLine.useDelimiter("/");
+            while(scanLine.hasNext()) {
+                String num = scanLine.next();
+                if(num.equals("1")){
+                    String name = scanLine.next();
                     String birthday = scanLine.next();
                     boolean status = scanLine.nextBoolean();
-                    memberList.add(new Member(name, birthday, status));
-                } else if(nr == 2){
-                    String name = scanLine.next() + " ";
-                    name += scanLine.next();
+                    boolean hasPayed = scanLine.nextBoolean();
+                    Member member = new Member(name, birthday, status);
+                    member.setHasPaid(hasPayed);
+                    memberList.add(member);
+                }else{
+                    String name = scanLine.next();
                     String birthday = scanLine.next();
                     boolean status = scanLine.nextBoolean();
-                    Discipline dis = Discipline.valueOf(scanLine.next());
-                    memberList.add(new CompSwimmer(name, birthday, status, dis));
+                    Discipline discipline = Discipline.valueOf(scanLine.next());
+                    boolean hasPayed = scanLine.nextBoolean();
+                    CompSwimmer compSwimmer = new CompSwimmer(name, birthday, status, discipline);
+                    compSwimmer.setHasPaid(hasPayed);
+                    memberList.add(compSwimmer);
                 }
-
-                /*
-                boolean hasPaid = scanLine.nextBoolean();
-                Member member = new Member(name, birthday, status);
-                member.setHasPaid(hasPaid);
-                memberList.add(member);
-                 */
             }
+       }
+   }
+
+    public static String toStringReadOnly(Object object){
+        if(object instanceof CompSwimmer){
+            CompSwimmer compSwimmer = (CompSwimmer) object;
+            return 2 + "/" + compSwimmer.getName() + "/" + compSwimmer.getBirthday() + "/" + compSwimmer.getMembership().getStatus() + "/" + compSwimmer.getDiscipline() + "/" + compSwimmer.getHasPaid();
+        } else {
+            Member member = (Member) object;
+            return 1 + "/" + member.getName() + "/" + member.getBirthday() + "/" + member.getMembership().getStatus() + "/" + member.getHasPaid();
         }
     }
 }

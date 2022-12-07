@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class CompSwimmer extends Member{
-    Discipline discipline;
-    ArrayList<Event> eventList = new ArrayList<>();
-    ArrayList<Training> trainingList = new ArrayList<>();
+    private Discipline discipline;
+    private ArrayList<Event> eventList = new ArrayList<>();
+    private ArrayList<Training> trainingList = new ArrayList<>();
 
     public CompSwimmer(String name, String birthday, boolean status, Discipline discipline){
         super(name, birthday, status);

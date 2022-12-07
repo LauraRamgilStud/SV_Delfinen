@@ -1,0 +1,6 @@
+Name: Freja Kanin
+Birthday: 12-12-2002
+Status: passive
+Payment status: not payed
+Fee:500.0
+========================

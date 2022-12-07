@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Accounting {
     private static double sum;
+
     public static void viewOverdueInvoices(){
         for(Member member : Database.getMemberList()){
             if (!member.getHasPaid()){  //if (member.getHasPaid() == false)
@@ -12,9 +13,7 @@ public class Accounting {
             }
         }
     }
-    public static void calculateDifference(){
 
-    }
     public static void calculateExpectedIncome(){
         for(Member member : Database.getMemberList()){
             sum += member.getMembership().getFee();
@@ -32,6 +31,7 @@ public class Accounting {
             }
         }
     }
+
     public static void changePaymentStatus(){
         System.out.println("[1] Change specific payment status\n[2] Change all payment status'");
         Scanner scanner = new Scanner(System.in);
@@ -50,6 +50,7 @@ public class Accounting {
         }
 
     }
+
     public static void changeSpecificPayment(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter member's name: ");
@@ -58,13 +59,8 @@ public class Accounting {
             if(input.equals(member.getName())){
                 System.out.println("Change status to: ");
                 boolean inputBoolean = scanner.nextBoolean();
-                if(inputBoolean) {
-                    member.setHasPaid(true);
-                    Database.updateDBFile();
-                } else {
-                    member.setHasPaid(false);
-                    Database.updateDBFile();
-                }
+                member.setHasPaid(inputBoolean);
+                Database.updateDBFile();
             } else {
                 System.out.println("Invalid input.");
             }

@@ -4,8 +4,7 @@ import java.time.*;
 import java.util.Date;
 
 public class Membership {
-    //private boolean isCompetitive;
-    private String birthday;
+    private final String birthday;
     private boolean status;
     private static final double PASSIVE_PRICE = 500.00;
     private static final double JUNIOR_PRICE = 1000.00;
@@ -13,14 +12,10 @@ public class Membership {
     private static final double RETIRED_PRICE = SENIOR_PRICE - 0.25 * SENIOR_PRICE;
 
     public Membership(boolean status, String birthday){
-        //this.isCompetitive = isCompetitive;
         this.status = status;
         this.birthday = birthday;
     }
 
-    /*//public boolean isCompetitive() {
-        return isCompetitive;
-    }*/
     public String toString() {
         return " " + getFee() + " DKK";
     }
@@ -53,4 +48,13 @@ public class Membership {
         Period period = Period.between(givenDate, LocalDate.now());
         return period.getYears();
     }
+
+    public boolean getStatus(){
+        return status;
+    }
+
+    //bruges ikke, men måske noget vi skal bruge? (edit member)
+    /*public void setStatus(boolean status){
+        this.status = status;
+    }*/
 }
