@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.sql.Array;
+import java.io.IOException;
 import java.util.*;
 
 public class Coach extends Employee {
@@ -18,7 +19,6 @@ public class Coach extends Employee {
         super(id);
         this.discipline = discipline;
     }
-
     public void populateCoachStudentList(Discipline discipline) {
         //while((Member member = reader.readMember())!= null) {
         for (Member member : Database.getMemberList()) {
@@ -41,7 +41,6 @@ public class Coach extends Employee {
         }
         //reader.close(); /* https://stackoverflow.com/questions/5343689/java-reading-a-file-into-an-arraylist */
     }
-
     public void coachMenu(Discipline discipline) {
         populateCoachStudentList(discipline);
 
@@ -172,7 +171,6 @@ public class Coach extends Employee {
             input = scanner.nextInt();
         }
     }
-
     public static void getTopFiveSwimmersMenu(){
         System.out.println("\n======================================\n= [1] View Top 5 Junior Swimmers     =\n= [2] View Top 5 Senior Swimmers     =\n======================================\n");
         Scanner scanner = new Scanner(System.in);
@@ -206,7 +204,6 @@ public class Coach extends Employee {
             }
         }
     }
-
     public static void getTopFiveSwimmersSenior(){
         ArrayList<CompSwimmer> topSwimmers = (ArrayList<CompSwimmer>) seniorList.clone();
         Collections.sort(topSwimmers);
@@ -219,8 +216,6 @@ public class Coach extends Employee {
             }
         }
     }
-
-
     public void printMenu(){
         System.out.println("\n=============== MENU =================");
         System.out.println("= [1] View student list              =");
@@ -242,9 +237,7 @@ public class Coach extends Employee {
     public void setDiscipline(Discipline discipline) {
         this.discipline = discipline;
     }
-    public Discipline getDiscipline() {
-        return discipline;
-    }
+    public Discipline getDiscipline() { return discipline; }
     public CompSwimmer getSwimmerByName(String name){
         for (CompSwimmer compS : juniorList) {
             if (compS.getName().equals(name)) {
@@ -258,5 +251,15 @@ public class Coach extends Employee {
             }
         }
         return null;
+    }
+
+    //BufferedReader reader = new BufferedReader(new FileReader("crawlStudents.txt"));
+
+
+    try{
+        BufferedWriter writer = new BufferedWriter(new FileWriter("crawlStudents.txt"));
+        for(CompSwimmer compSwimmer : juniorList){
+            writer.write("\nName: " + compSwimmer.getName() + compSwimmer.getTrainingList());
+        }
     }
 }
