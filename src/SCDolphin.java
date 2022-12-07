@@ -1,7 +1,10 @@
+import javax.xml.crypto.Data;
 import java.util.Scanner;
 public class SCDolphin {
     public static void main(String[] args) {
         Database.readFile();
+        //Database.readEventFile();
+        //Database.readTrainingFile();
         //Database.printMemberList();
         Chairman chairman = new Chairman("122");
         Cashier cashier = new Cashier("222");

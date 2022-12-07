@@ -12,9 +12,6 @@ public class Coach extends Employee {
     private static ArrayList<CompSwimmer> seniorList = new ArrayList<>();
     private static ArrayList<CompSwimmer> juniorList = new ArrayList<>();
 
-    /*BufferedReader reader = new BufferedReader(new FileReader("crawlStudents.txt"));
-    BufferedWriter writer = new BufferedWriter(new FileWriter("crawlStudents.txt"));*/
-
     public Coach(String id, Discipline discipline) {
         super(id);
         this.discipline = discipline;
@@ -251,15 +248,5 @@ public class Coach extends Employee {
             }
         }
         return null;
-    }
-
-    //BufferedReader reader = new BufferedReader(new FileReader("crawlStudents.txt"));
-
-
-    try{
-        BufferedWriter writer = new BufferedWriter(new FileWriter("crawlStudents.txt"));
-        for(CompSwimmer compSwimmer : juniorList){
-            writer.write("\nName: " + compSwimmer.getName() + compSwimmer.getTrainingList());
-        }
     }
 }

@@ -177,4 +177,91 @@ public class Database {
             }
         }
     }*/
+
+    public static void updateEventFile(){
+        try{
+            File eventsFile = new File("eventsFile.txt");
+            PrintStream output = new PrintStream(eventsFile);
+
+            for(Member m: memberList){
+                if(m instanceof CompSwimmer){
+                    for(Event e: ((CompSwimmer) m).getEventList()){
+                        output.println(m.getName()+"/"+e.getName()+"/"+e.getStringDate()+"/"+e.getPositionPlaced()+"/"+e.getTime());
+                    }
+                }
+            }
+        } catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+    public static void readEventFile(){
+        try{
+            File eventsFile = new File("eventsFile.txt");
+            Scanner scanFile = new Scanner(eventsFile);
+
+            while(scanFile.hasNextLine()){
+                String line = scanFile.nextLine();
+                Scanner scanLine = new Scanner(line);
+                scanLine.useDelimiter("/");
+                while(scanLine.hasNext()){
+                    String name = scanLine.next();
+                    String eventName = scanLine.next();
+                    String date = scanLine.next();
+                    int position = scanLine.nextInt();
+                    String time = scanLine.next();
+                    for(Member m: memberList){
+                        if(m.getName().equals(name)){
+                            ((CompSwimmer)m).addEvent(eventName, date);
+                            ((CompSwimmer)m).addTimeAndPosition(eventName, position, time);
+                        }
+                    }
+                }
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public static void updateTrainingFile(){
+        try{
+            File trainingsFile = new File("trainingsFile.txt");
+            PrintStream output = new PrintStream(trainingsFile);
+
+            for(Member m: memberList){
+                if(m instanceof CompSwimmer){
+                    for(Training t: ((CompSwimmer) m).getTrainingList()){
+                        output.println(m.getName()+"/"+t.getStringDate()+"/"+t.getTime());
+                    }
+                }
+            }
+        } catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+    public static void readTrainingFile(){
+        try{
+            File trainingFile = new File("trainingsFile.txt");
+            Scanner scanFile = new Scanner(trainingFile);
+
+            while(scanFile.hasNextLine()){
+                String line = scanFile.nextLine();
+                Scanner scanLine = new Scanner(line);
+                scanLine.useDelimiter("/");
+                while(scanLine.hasNext()){
+                    String name = scanLine.next();
+                    String date = scanLine.next();
+                    String time = scanLine.next();
+                    for(Member m: memberList){
+                        if(m.getName().equals(name)){
+                            ((CompSwimmer)m).addTraining(date, time);
+                        }
+                    }
+                }
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
