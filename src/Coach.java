@@ -8,59 +8,34 @@ import java.util.*;
 
 public class Coach extends Employee {
     private Discipline discipline;
-    private static ArrayList<CompSwimmer> sCrawlList = new ArrayList<>();
-    private static ArrayList<CompSwimmer> jCrawlList = new ArrayList<>();
-    private static ArrayList<CompSwimmer> sBackcrawlList = new ArrayList<>();
-    private static ArrayList<CompSwimmer> jBackcrawlList = new ArrayList<>();
-    private static ArrayList<CompSwimmer> sButterflyList = new ArrayList<>();
-    private static ArrayList<CompSwimmer> jButterflyList = new ArrayList<>();
-    private static ArrayList<CompSwimmer> sBreaststrokeList = new ArrayList<>();
-    private static ArrayList<CompSwimmer> jBreaststrokeList = new ArrayList<>();
+    private ArrayList<CompSwimmer> seniorList = new ArrayList<>();
+    private ArrayList<CompSwimmer> juniorList = new ArrayList<>();
 
-
-    BufferedReader reader = new BufferedReader(new FileReader("crawlStudents.txt"));
-    BufferedWriter writer = new BufferedWriter(new FileWriter("crawlStudents.txt"));
+    /*BufferedReader reader = new BufferedReader(new FileReader("crawlStudents.txt"));
+    BufferedWriter writer = new BufferedWriter(new FileWriter("crawlStudents.txt"));*/
 
     public Coach(String id, Discipline discipline) {
         super(id);
         this.discipline = discipline;
     }
 
-    public void pubulateCoachStudentList() {
-        /*noget med database.getMemberList*/
+    public void populateCoachStudentList(Discipline discipline) {
         //while((Member member = reader.readMember())!= null) {
         for (Member member : Database.getMemberList()) {
             if (member.getMembership().getStatus() && member instanceof CompSwimmer) {
                 int age = member.getMembership().getAge(member.getBirthday());
                 Discipline memberDiscipline = ((CompSwimmer) member).getDiscipline();
                 if (age >= 18) {  //if (member.getBirthday())
-                    if (memberDiscipline == Discipline.CRAWL && getDiscipline() == Discipline.CRAWL) {
-                        sCrawlList.add((CompSwimmer) member);
-                        Writer.write(String.valueOf(sCrawlList));
-                        Writer.close();
-                    }
-                    if (memberDiscipline == Discipline.BACKCRAWL && getDiscipline() == Discipline.BACKCRAWL) {
-                        sBackcrawlList.add((CompSwimmer) member);
-                    }
-                    if (memberDiscipline == Discipline.BUTTERFLY && getDiscipline() == Discipline.BUTTERFLY) {
-                        sButterflyList.add((CompSwimmer) member);
-                    }
-                    if (memberDiscipline == Discipline.BREASTSTROKE && getDiscipline() == Discipline.BREASTSTROKE) {
-                        sBreaststrokeList.add((CompSwimmer) member);
+                    if (memberDiscipline == discipline) {
+                        seniorList.add((CompSwimmer) member);
+                        /*Writer.write(String.valueOf(seniorList));
+                        Writer.close();*/
                     }
                 } else {
-                    if (memberDiscipline == Discipline.CRAWL && getDiscipline() == Discipline.CRAWL) {
-                        jCrawlList.add((CompSwimmer) member);
+                    if (memberDiscipline == discipline) {
+                        juniorList.add((CompSwimmer) member);
                     }
-                    if (memberDiscipline == Discipline.BACKCRAWL && getDiscipline() == Discipline.BACKCRAWL) {
-                        jBackcrawlList.add((CompSwimmer) member);
-                    }
-                    if (memberDiscipline == Discipline.BUTTERFLY && getDiscipline() == Discipline.BUTTERFLY) {
-                        jButterflyList.add((CompSwimmer) member);
-                    }
-                    if (memberDiscipline == Discipline.BREASTSTROKE && getDiscipline() == Discipline.BREASTSTROKE) {
-                        jBreaststrokeList.add((CompSwimmer) member);
-                    }
+
                 }
             }
         }
@@ -85,33 +60,151 @@ public class Coach extends Employee {
         while (input != 0) {
             switch (input) {
                 case 1:
-                    //studentList
-                    printCoachStudentList();
+                    printPopulateCoachStudentList();
                     break;
-                case 2:
-                    //training
+                case 2: //Add training or view trainings
+                    System.out.println("Do you want to View [1] or add [2]");
+                    input = scanner.nextInt();
+                    switch (input){
+                        case 1: //view training list
+                            printPopulateCoachStudentList();
+                            System.out.println("Enter name of swimmer:");
+                            Scanner scan1 = new Scanner(System.in);
+                            String name1 = scan1.nextLine();
+                            CompSwimmer compS1 = getSwimmerByName(name1);
+                            compS1.viewTrainings();
+                            break;
+                        case 2: //add training
+                            try{
+                                System.out.println("Enter name of swimmer:");
+                                Scanner scan2 = new Scanner(System.in);
+                                String name2 = scan2.nextLine();
+                                System.out.println("Enter Date: [dd-MM-yyyy]");
+                                String date = scanner.next();
+                                System.out.println("Enter time:");
+                                String time = scanner.next();
+                                CompSwimmer compS2 = getSwimmerByName(name2);
+                                compS2.addTraining(date, time);
+
+                            }catch (Exception e){
+                                e.getStackTrace();
+                            }
+
+                            break;
+                    }
                     break;
                 case 3:
+                    System.out.println("Do you want to View [1], add [2], edit [3] or delete [4]");
+                    input = scanner.nextInt();
+                    switch (input){
+                        case 1: //view
+                            printPopulateCoachStudentList();
+                            System.out.println("Enter name of swimmer:");
+                            Scanner scan1 = new Scanner(System.in);
+                            String name1 = scan1.nextLine();
+                            CompSwimmer compS1 = getSwimmerByName(name1);
+                            compS1.viewEvents();
+                            break;
+                        case 2: //add
+                            try{
+                                System.out.println("Enter name of swimmer:");
+                                Scanner scan2 = new Scanner(System.in);
+                                String name2 = scan2.nextLine();
+                                System.out.println("Enter name of event");
+                                String eventName = scanner.next();
+                                System.out.println("Enter date of event:");
+                                String date = scanner.next();
+                                CompSwimmer compS2 = getSwimmerByName(name2);
+                                compS2.addEvent(eventName, date);
+
+                            }catch (Exception e){
+                                e.getStackTrace();
+                            }
+                            break;
+                        case 3:
+                            //edit
+                            System.out.println("Do you want to add time [1], position [2] or both [3]");
+                            input = scanner.nextInt();
+                            switch (input){
+                                case 1: //edit time
+                                    System.out.println("Enter name of swimmer:");
+                                    Scanner scan3 = new Scanner(System.in);
+                                    String name3 = scan3.nextLine();
+                                    System.out.println("Enter name of event");
+                                    String eventName = scanner.next();
+                                    System.out.println("Enter time to add");
+                                    String time = scanner.next();
+                                    CompSwimmer compS3 = getSwimmerByName(name3);
+                                    compS3.addTime(eventName, time);
+
+                                    break;
+                                case 2: //edit position
+                                    System.out.println("Enter name of swimmer:");
+                                    Scanner scan4 = new Scanner(System.in);
+                                    String name4 = scan4.nextLine();
+                                    System.out.println("Enter name of event:");
+                                    String eventName1 = scanner.next();
+                                    System.out.println("Enter position:");
+                                    int position = scanner.nextInt();
+                                    CompSwimmer compS4 = getSwimmerByName(name4);
+                                    compS4.addPosition(eventName1, position);
+                                    break;
+                                case 3:
+                                    //edit both
+                                    //CompSwimmer.addTimeAndPosition;
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            //delete
+                            //CompSwimmer.removeEvent;
+                            break;
+                    }
                     //event
                     break;
+                case 4: //top 5 swimmers
+                    getTopFiveSwimmersJunior();
+                    break;
                 default:
-                    //leave
+                    System.out.println("Wrong input");
                     break;
             }
             printMenu();
             input = scanner.nextInt();
         }
+    }
 
-        //input scanner.nextInt();
+    public void getTopFiveSwimmersJunior(){
+        ArrayList<String> topTrainingsOfJuniors = new ArrayList<>();
+        ArrayList<CompSwimmer> topFiveSwimmers = new ArrayList<>();
 
-        /*Lave Menu for coach
-            Han skal kunne:
-            - view student list
-            - tilføje, redigere og delete training
-            - tilføje, redigere og delete event
-            - logout til hovedmenu (MAIN)
+        for(CompSwimmer junior: juniorList){
+            topTrainingsOfJuniors.add(junior.getBestTraining());
+            for(int i = 0; i < topTrainingsOfJuniors.size(); i++) {
+                if(topTrainingsOfJuniors.get(i).equals(junior.getBestTraining())) {
+                    topFiveSwimmers.add(junior);
+                }
+            }
+        }
+    }
 
-            Valgene skal være ud fra tal, altså [view list, press 1]*/
+    public void printMenu(){
+        System.out.println("\n=============== MENU =================");
+        System.out.println("= [1] View student list              =");
+        System.out.println("= [2] View or add training           =");
+        System.out.println("= [3] View add, edit or delete event =");
+        System.out.println("= [4] view top 5 swimmers            =");
+        System.out.println("= [0] Log Out                        =");
+        System.out.println("======================================\n");
+    }
+    private void printPopulateCoachStudentList() {
+        for(CompSwimmer compSwimmer: juniorList){
+            System.out.println(compSwimmer.toString());
+        }
+        System.out.println();
+        for(CompSwimmer compSwimmer: seniorList){
+            System.out.println(compSwimmer.toString());
+        }
     }
     public void setDiscipline(Discipline discipline) {
         this.discipline = discipline;

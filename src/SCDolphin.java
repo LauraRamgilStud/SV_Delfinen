@@ -28,7 +28,17 @@ public class SCDolphin {
                 case 222:
                     Cashier.cashierMenu();
                     break;
-                case 3:
+                case 334:
+                    coach[0].coachMenu(coach[0].getDiscipline());
+                    break;
+                case 335:
+                    coach[1].coachMenu(coach[1].getDiscipline());
+                    break;
+                case 336:
+                    coach[2].coachMenu(coach[2].getDiscipline());
+                    break;
+                case 337:
+                    coach[3].coachMenu(coach[3].getDiscipline());
                     break;
                 default:
                     System.out.println("Invalid input.");
