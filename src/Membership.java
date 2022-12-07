@@ -53,8 +53,7 @@ public class Membership {
         return status;
     }
 
-    //bruges ikke, men måske noget vi skal bruge? (edit member)
-    /*public void setStatus(boolean status){
+    public void setStatus(boolean status){
         this.status = status;
-    }*/
+    }
 }

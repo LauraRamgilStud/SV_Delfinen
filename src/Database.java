@@ -84,7 +84,7 @@ public class Database {
             for(Member member : memberList){
                 System.out.println(member.toString());
             }
-            }
+    }
 
     public static void updateDBFile(){
         try{

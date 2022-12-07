@@ -69,13 +69,16 @@ public class Coach extends Employee {
     }
 
 
-    public void coachMenu() {
-        System.out.println("\n====== MENU =====");
-        System.out.println("[1] View student list");
-        System.out.println("[2] Add, edit or delete training");
-        System.out.println("[3] Add, edit or delete event");
-        System.out.println("[0] Log Out");
-        System.out.println("=================\n");
+    public void coachMenu(Discipline discipline) {
+        populateCoachStudentList(discipline);
+
+        System.out.println("\n================ MENU =================");
+        System.out.println("= [1] View student list               =");
+        System.out.println("= [2] View or add training            ="); //&view som 1
+        System.out.println("= [3] View, add, edit or delete event ="); //&view som 1
+        System.out.println("= [4] view top 5 swimmers             =");
+        System.out.println("= [0] Log Out                         =");
+        System.out.println("=======================================\n");
 
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
@@ -96,12 +99,8 @@ public class Coach extends Employee {
                     //leave
                     break;
             }
-            System.out.println("\n====== MENU =====");
-            System.out.println("[1] View student list");
-            System.out.println("[2] Add, edit or delete training");
-            System.out.println("[3] Add, edit or delete event");
-            System.out.println("[0] Log Out");
-            System.out.println("=================\n");
+            printMenu();
+            input = scanner.nextInt();
         }
 
         //input scanner.nextInt();
@@ -115,11 +114,9 @@ public class Coach extends Employee {
 
             Valgene skal være ud fra tal, altså [view list, press 1]*/
     }
-
     public void setDiscipline(Discipline discipline) {
         this.discipline = discipline;
     }
-
     public Discipline getDiscipline() {
         return discipline;
     }

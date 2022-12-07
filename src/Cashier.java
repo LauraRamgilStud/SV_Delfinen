@@ -5,15 +5,17 @@ public class Cashier extends Employee {
     }
 
     public static void cashierMenu() {
-        System.out.println("[1] Overdue Invoices");
-        System.out.println("[2] Expected Income");
-        System.out.println("[3] Actual Income");
-        System.out.println("[4] Change Payment Status");
-        System.out.println("[5] Log Out");
+        System.out.println("\n============ MENU ============");
+        System.out.println("= [1] Overdue Invoices       =");
+        System.out.println("= [2] Expected Income        =");
+        System.out.println("= [3] Actual Income          =");
+        System.out.println("= [4] Change Payment Status  =");
+        System.out.println("= [0] Log Out                =");
+        System.out.println("==============================\n");
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
 
-        while (input != 5) {
+        while (input != 0) {
             switch (input) {
                 case 1:
                     // View Overdue Invoices
@@ -31,19 +33,17 @@ public class Cashier extends Employee {
                     // Change Payment Status
                     Accounting.changePaymentStatus();
                     break;
-                //case 5:
-                // Change Payment Status
-                //SCDolphin.main(null);
-                // break;
                 default:
                     System.out.println("Invalid Input.");
                     break;
             }
-            System.out.println("[1] Overdue Invoices");
-            System.out.println("[2] Expected Income");
-            System.out.println("[3] Actual Income");
-            System.out.println("[4] Change Payment Status");
-            System.out.println("[5] Log Out");
+            System.out.println("\n============ MENU ============");
+            System.out.println("= [1] Overdue Invoices       =");
+            System.out.println("= [2] Expected Income        =");
+            System.out.println("= [3] Actual Income          =");
+            System.out.println("= [4] Change Payment Status  =");
+            System.out.println("= [0] Log Out                =");
+            System.out.println("==============================\n");
             input = scanner.nextInt();
         }
     }

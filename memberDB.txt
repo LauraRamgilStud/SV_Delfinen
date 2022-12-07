@@ -1,6 +1,18 @@
 Name: Freja Kanin
 Birthday: 12-12-2002
 Status: passive
-Payment status: not payed
+Payment status: payed
 Fee:500.0
+========================
+Name: Laura Ramgil
+Birthday: 31-03-1999
+Status: active
+Payment status: not payed
+Fee:1600.0
+========================
+Name: Freja Kanin
+Birthday: 12-02-2009
+Status: active
+Payment status: not payed
+Fee:1000.0
 ========================
