@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Collections;
 
-public class CompSwimmer extends Member{
+public class CompSwimmer extends Member implements Comparable<CompSwimmer>{
     private Discipline discipline;
     private ArrayList<Event> eventList = new ArrayList<>();
     private ArrayList<Training> trainingList = new ArrayList<>();
@@ -75,6 +75,14 @@ public class CompSwimmer extends Member{
         return null;
     }
 
+    // COPY FOR LAURA
+    @Override
+    public int compareTo(CompSwimmer o){
+        if(this.getBestTraining() == null || o.getBestTraining() == null){
+            return 0;
+        }
+        return this.getBestTraining().compareTo(o.getBestTraining());
+    }
     public void viewTrainings(){
         System.out.println("******************** " + super.getName() + "'s TRAININGS ********************");
         for(Training t: trainingList){

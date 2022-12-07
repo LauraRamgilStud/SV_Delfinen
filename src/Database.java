@@ -167,7 +167,7 @@ public class Database {
 
     }
 
-    public static String toStringTrainingAndEvents(Object object){
+    /*public static String toStringTrainingAndEvents(Object object){
         if(object instanceof CompSwimmer){
             CompSwimmer compSwimmer = (CompSwimmer) object;
             ArrayList<Event> eventList = compSwimmer.getEventList();
@@ -176,5 +176,5 @@ public class Database {
 
             }
         }
-    }
+    }*/
 }

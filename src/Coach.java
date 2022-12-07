@@ -42,7 +42,6 @@ public class Coach extends Employee {
         //reader.close(); /* https://stackoverflow.com/questions/5343689/java-reading-a-file-into-an-arraylist */
     }
 
-
     public void coachMenu(Discipline discipline) {
         populateCoachStudentList(discipline);
 
@@ -174,8 +173,21 @@ public class Coach extends Employee {
         }
     }
 
+    // COPY LAURA
     public void getTopFiveSwimmersJunior(){
-        ArrayList<String> topTrainingsOfJuniors = new ArrayList<>();
+        ArrayList<CompSwimmer> topSwimmers = (ArrayList<CompSwimmer>) juniorList.clone();
+        Collections.sort(topSwimmers);
+        int index = 0;
+        for(CompSwimmer toppi : topSwimmers){
+            System.out.println(toppi);
+            index++;
+            if(index == 5){
+                break;
+            }
+        }
+
+
+      /*  ArrayList<String> topTrainingsOfJuniors = new ArrayList<>();
         ArrayList<CompSwimmer> topFiveSwimmers = new ArrayList<>();
 
         for(CompSwimmer junior: juniorList){
@@ -185,8 +197,10 @@ public class Coach extends Employee {
                     topFiveSwimmers.add(junior);
                 }
             }
-        }
+        }*/
     }
+
+
 
     public void printMenu(){
         System.out.println("\n=============== MENU =================");
