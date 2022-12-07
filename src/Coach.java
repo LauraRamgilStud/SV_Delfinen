@@ -8,8 +8,8 @@ import java.util.*;
 
 public class Coach extends Employee {
     private Discipline discipline;
-    private ArrayList<CompSwimmer> seniorList = new ArrayList<>();
-    private ArrayList<CompSwimmer> juniorList = new ArrayList<>();
+    private static ArrayList<CompSwimmer> seniorList = new ArrayList<>();
+    private static ArrayList<CompSwimmer> juniorList = new ArrayList<>();
 
     /*BufferedReader reader = new BufferedReader(new FileReader("crawlStudents.txt"));
     BufferedWriter writer = new BufferedWriter(new FileWriter("crawlStudents.txt"));*/
@@ -162,7 +162,7 @@ public class Coach extends Employee {
                     //event
                     break;
                 case 4: //top 5 swimmers
-                    getTopFiveSwimmersJunior();
+                    getTopFiveSwimmersMenu();
                     break;
                 default:
                     System.out.println("Wrong input");
@@ -173,9 +173,42 @@ public class Coach extends Employee {
         }
     }
 
-    // COPY LAURA
-    public void getTopFiveSwimmersJunior(){
+    public static void getTopFiveSwimmersMenu(){
+        System.out.println("\n======================================\n= [1] View Top 5 Junior Swimmers     =\n= [2] View Top 5 Senior Swimmers     =\n======================================\n");
+        Scanner scanner = new Scanner(System.in);
+
+        try{
+            int input = scanner.nextInt();
+            switch (input){
+                case 1:
+                    Coach.getTopFiveSwimmersJunior();
+                    break;
+                case 2:
+                    Coach.getTopFiveSwimmersSenior();
+                    break;
+                default:
+                    System.out.println("\n==============================\n=       INVALID INPUT        =\n==============================\n");
+                    break;
+            }} catch(Exception e){
+            System.out.println("\n==============================\n=       INVALID INPUT        =\n==============================\n");
+        }
+    }
+    public static void getTopFiveSwimmersJunior(){
         ArrayList<CompSwimmer> topSwimmers = (ArrayList<CompSwimmer>) juniorList.clone();
+        Collections.sort(topSwimmers);
+        System.out.println("\n===========TOP 5==============\n");
+        int index = 0;
+        for(CompSwimmer toppi : topSwimmers){
+            System.out.println("Time: " + toppi.getBestTraining() + " Name: " + toppi.getName());
+            index++;
+            if(index == 5){
+                break;
+            }
+        }
+    }
+
+    public static void getTopFiveSwimmersSenior(){
+        ArrayList<CompSwimmer> topSwimmers = (ArrayList<CompSwimmer>) seniorList.clone();
         Collections.sort(topSwimmers);
         int index = 0;
         for(CompSwimmer toppi : topSwimmers){
@@ -185,21 +218,7 @@ public class Coach extends Employee {
                 break;
             }
         }
-
-
-      /*  ArrayList<String> topTrainingsOfJuniors = new ArrayList<>();
-        ArrayList<CompSwimmer> topFiveSwimmers = new ArrayList<>();
-
-        for(CompSwimmer junior: juniorList){
-            topTrainingsOfJuniors.add(junior.getBestTraining());
-            for(int i = 0; i < topTrainingsOfJuniors.size(); i++) {
-                if(topTrainingsOfJuniors.get(i).equals(junior.getBestTraining())) {
-                    topFiveSwimmers.add(junior);
-                }
-            }
-        }*/
     }
-
 
 
     public void printMenu(){
