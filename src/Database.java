@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Database {
 
@@ -51,27 +52,29 @@ public class Database {
     public static void removeMemberByName(){
         System.out.println("Enter name of member to remove");
         Scanner scanner = new Scanner(System.in);
-        boolean control = true;
-        while(control){
+        boolean sentinel = true;
+        //memberList.removeIf(m1 -> m1.getName().equals(name));
+
+        while(sentinel){
             try{
-                String name = scanner.nextLine();
+                String name = scanner.next();
                 for(Member m: memberList){
                     if(m.getName().equals(name)){
-                        System.out.println("Member does exist.");
-                        System.out.println("Are you sure you want to delete member " + name + "?");
+                        System.out.println("Member exist in system");
+                        System.out.println("Are you sure you want to remove " + name + "?");
                         System.out.println("[1] Yes\n[2] No");
-                        int remove = scanner.nextInt();
-                        if(remove == 1){
-                            memberList.removeIf(m1 -> m1.getName().equals(name));
-                            control = false;
-                            break;
-                        }else{
-                            System.out.println("Cancellation of removal of member " + name);
-                            control = false;
+                        while(!scanner.hasNextInt()){
+                            //System.out.println("Input not valid: Enter [1] or [2]");
+                            if(scanner.nextInt() == 1){
+                                memberList.removeIf(m1 -> m1.getName().equals(name));
+                            }else{
+                                System.out.println("Cancellation of removal of member " + name);
+                            }
+                            sentinel = false;
                         }
                     }
                 }
-            }catch (Exception e){
+            }catch(InputMismatchException e){
                 System.out.println("Input not valid");
                 e.printStackTrace();
             }
@@ -94,7 +97,7 @@ public class Database {
             PrintStream output = new PrintStream(file);
 
             for(Member m: memberList){
-                outputReadOnly.println(toStringReadOnly(m));
+                outputReadOnly.println(toStringReadOnlyMembers(m));
                 output.println(m.toString());
             }
         } catch(FileNotFoundException e){
@@ -138,13 +141,40 @@ public class Database {
        }
    }
 
-    public static String toStringReadOnly(Object object){
+    public static String toStringReadOnlyMembers(Object object){
         if(object instanceof CompSwimmer){
             CompSwimmer compSwimmer = (CompSwimmer) object;
             return 2 + "/" + compSwimmer.getName() + "/" + compSwimmer.getBirthday() + "/" + compSwimmer.getMembership().getStatus() + "/" + compSwimmer.getDiscipline() + "/" + compSwimmer.getHasPaid();
         } else {
             Member member = (Member) object;
             return 1 + "/" + member.getName() + "/" + member.getBirthday() + "/" + member.getMembership().getStatus() + "/" + member.getHasPaid();
+        }
+    }
+
+    public static void updateTrainingAndEventFile(){
+
+                try{
+                    File fileReadOnly = new File("trainingAndEventFile.txt");
+                    PrintStream outputReadOnly = new PrintStream(fileReadOnly);
+
+                    for(Member m: memberList){
+                        outputReadOnly.println(toStringReadOnlyMembers(m));
+                    }
+                } catch(FileNotFoundException e){
+                    e.printStackTrace();
+                }
+
+
+    }
+
+    public static String toStringTrainingAndEvents(Object object){
+        if(object instanceof CompSwimmer){
+            CompSwimmer compSwimmer = (CompSwimmer) object;
+            ArrayList<Event> eventList = compSwimmer.getEventList();
+            String toReturn = compSwimmer.getName();
+            for(Event e: eventList){
+
+            }
         }
     }
 }

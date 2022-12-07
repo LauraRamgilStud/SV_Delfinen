@@ -1,6 +1,8 @@
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
+import java.util.Collections;
 
 public class CompSwimmer extends Member{
     private Discipline discipline;
@@ -61,6 +63,18 @@ public class CompSwimmer extends Member{
         trainingList.sort(Comparator.comparing(Training::getDate));
     }
 
+    public String getBestTraining(){
+        ArrayList<String> times = new ArrayList<>();
+        for(Training t: trainingList){
+            times.add(t.getTime());
+        }
+        Collections.sort(times);
+        if(times.size() > 0){
+            return times.get(0);
+        }
+        return null;
+    }
+
     public void viewTrainings(){
         System.out.println("******************** " + super.getName() + "'s TRAININGS ********************");
         for(Training t: trainingList){
@@ -73,5 +87,13 @@ public class CompSwimmer extends Member{
         for(Event e: eventList){
             System.out.println("Event: "+ e.getName() + "  Date: " + e.getDate() + "  Time: " + e.getTime() + "  Position: " + e.getPositionPlaced());
         }
+    }
+
+    public ArrayList<Training> getTrainingList(){
+        return trainingList;
+    }
+
+    public ArrayList<Event> getEventList(){
+        return eventList;
     }
 }

@@ -3,8 +3,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.sql.Array;
+import java.util.*;
 
 public class Coach extends Employee {
     private Discipline discipline;
@@ -30,8 +30,8 @@ public class Coach extends Employee {
         /*noget med database.getMemberList*/
         //while((Member member = reader.readMember())!= null) {
         for (Member member : Database.getMemberList()) {
-            if (member.getStatus() && member instanceof CompSwimmer) {
-                int age = Membership.getAge(member.getBirthday());
+            if (member.getMembership().getStatus() && member instanceof CompSwimmer) {
+                int age = member.getMembership().getAge(member.getBirthday());
                 Discipline memberDiscipline = ((CompSwimmer) member).getDiscipline();
                 if (age >= 18) {  //if (member.getBirthday())
                     if (memberDiscipline == Discipline.CRAWL && getDiscipline() == Discipline.CRAWL) {
@@ -64,7 +64,6 @@ public class Coach extends Employee {
                 }
             }
         }
-        //}
         //reader.close(); /* https://stackoverflow.com/questions/5343689/java-reading-a-file-into-an-arraylist */
     }
 
@@ -119,5 +118,19 @@ public class Coach extends Employee {
     }
     public Discipline getDiscipline() {
         return discipline;
+    }
+    public CompSwimmer getSwimmerByName(String name){
+        for (CompSwimmer compS : juniorList) {
+            if (compS.getName().equals(name)) {
+                return compS;
+            }else{
+                for (CompSwimmer compS1 : seniorList) {
+                    if (compS1.getName().equals(name)) {
+                        return compS1;
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
