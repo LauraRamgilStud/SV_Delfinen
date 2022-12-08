@@ -17,7 +17,7 @@ public class Membership {
     }
 
     public String toString() {
-        return " " + getFee() + " DKK";
+        return "= " + getFee() + " DKK =";
     }
 
     public double getFee() {

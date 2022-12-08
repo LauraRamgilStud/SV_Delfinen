@@ -21,7 +21,7 @@ public class Accounting {
         for(Member member : Database.getMemberList()){
             if(member.getHasPaid()){        //(member.getHasPaid() == true)
                 sum += member.getMembership().getFee();
-                System.out.println("\n=======ACTUAL INCOME=========\n=        "+ sum +" DKK\n==============================\n");
+                System.out.println("\n======= ACTUAL INCOME =========\n=         "+ sum +" DKK\n================================\n");
             } else {
                 sum += 0;
             }
@@ -90,7 +90,7 @@ public class Accounting {
                 System.out.println("The payment status of each member has been changed to \"unpaid\".");
             }
         }} catch(Exception e){
-            System.out.println("\n======== INVALID INPUT =========\n=       ENTER [1] OR [2]       =\n================================\n");
+            System.out.println("\n======== INVALID INPUT =========\n=       Enter [1] or [2]       =\n================================\n");
         }
     }
 }

@@ -39,7 +39,7 @@ public class CompSwimmer extends Member implements Comparable<CompSwimmer>{
             eventList.remove(eventToDelete);
             Database.updateEventFile();
         }else{
-            System.out.println("Could not find event: "+eventName);
+            System.out.println("==== Could not find event: "+eventName+" ====");
         }
     }
 
@@ -94,16 +94,16 @@ public class CompSwimmer extends Member implements Comparable<CompSwimmer>{
     }
 
     public void viewTrainings(){
-        System.out.println("========" + super.getName() + "'s TRAININGS========");
+        System.out.println("==== " + super.getName() + "'s TRAININGS ====");
         for(Training t: trainingList){
-            System.out.println("Date: " + t.getDate() + "  Time: " + t.getTime());
+            System.out.println("= Date: " + t.getDate() + "  Time: " + t.getTime() + " =");
         }
     }
 
     public void viewEvents(){
-        System.out.println("========" + super.getName() + "'s EVENTS========");
+        System.out.println("==== " + super.getName() + "'s EVENTS ====");
         for(Event e: eventList){
-            System.out.println("Event: "+ e.getName() + "  Date: " + e.getDate() + "  Time: " + e.getTime() + "  Position: " + e.getPositionPlaced());
+            System.out.println("= Event: "+ e.getName() + "  Date: " + e.getDate() + "  Time: " + e.getTime() + "  Position: " + e.getPositionPlaced()+" =");
         }
     }
 

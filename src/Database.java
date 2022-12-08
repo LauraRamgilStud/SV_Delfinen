@@ -11,11 +11,11 @@ public class Database {
 
     public static void addStandardMember(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n============ENTER=============\n=                            =\n=============NAME=============\n");
+        System.out.println("\n============ ENTER =============\n=                              =\n============= NAME =============\n");
         String name = scanner.nextLine();
-        System.out.println("===========BIRTHDAY===========\n=         dd-mm-yyyy         =\n");
+        System.out.println("============ BIRTHDAY ============\n=          [DD-MM-YYYY]          =\n");
         String inputBirthday = scanner.nextLine();
-        System.out.println("============STATUS============\n=  [1] AKTIVE   [2] PASSIVE  =\n");
+        System.out.println("============ STATUS ============\n=   [1] active   [2] passive   =\n");
         int inputStatus = scanner.nextInt();
         boolean status = false;
         if(inputStatus == 1){
@@ -25,16 +25,16 @@ public class Database {
         }
         memberList.add(new Member(name, inputBirthday, status));
         updateDBFile();
-        System.out.println("==========SUCCESSFUL==========");
+        System.out.println("========== SUCCESSFUL ==========");
     }
 
     public static void addCompetitiveMember(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n============ENTER=============\n=                            =\n=============NAME=============\n");
+        System.out.println("\n============ ENTER =============\n=                              =\n============= NAME =============\n");
         String name = scanner.nextLine();
-        System.out.println("===========BIRTHDAY===========\n=         dd-mm-yyyy         =\n");
+        System.out.println("=========== BIRTHDAY ===========\n=         [DD-MM-YYYY]         =\n");
         String inputBirthday = scanner.nextLine();
-        System.out.println("============STATUS============\n=  [1] AKTIVE   [2] PASSIVE  =\n");
+        System.out.println("============ STATUS ============\n=   [1] active   [2] passive   =\n");
         int inputStatus = scanner.nextInt();
         boolean status = false;
         if(inputStatus == 1){
@@ -42,7 +42,7 @@ public class Database {
         } else if(inputStatus == 2){
             status = false;
         }
-        System.out.println("===========DISCIPLINE=============\n= [1] BACKCRAWL    [2] CRAWL     =\n= [3] BREASTSTROKE [4] BUTTERFLY =\n");
+        System.out.println("=========== DISCIPLINE =============\n= [1] backcrawl    [2] crawl       =\n= [3] breaststroke [4] butterfly   =\n");
         int dis = scanner.nextInt();
         Discipline discipline = null;
         if(dis == 1){
@@ -56,7 +56,7 @@ public class Database {
         }
         memberList.add(new CompSwimmer(name, inputBirthday, status, discipline));
         updateDBFile();
-        System.out.println("==========SUCCESSFUL==========");
+        System.out.println("========== SUCCESSFUL ==========");
     }
 
     public static ArrayList<Member> getMemberList() {
@@ -65,7 +65,7 @@ public class Database {
 
     public static void removeMemberByName(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter name of member to remove");
+        System.out.println("==== Enter name of member to remove ====");
         String name = scanner.nextLine();
         Member memberToDelete = null;
         boolean sentinel = true;
@@ -78,30 +78,30 @@ public class Database {
                     }
                 }
                 if(memberToDelete != null){
-                    System.out.println("Delete member "+name+"\n[1] Yes\n[2] No");
+                    System.out.println("= Delete member "+name+" \n= [1] Yes\n= [2] No");
                     if(scanner.hasNextInt()){
                         int delete = scanner.nextInt();
                         if(delete == 1){
                             memberList.remove(memberToDelete);
-                            System.out.println("Member "+name+" has been removed");
+                            System.out.println("==== Member "+name+" has been removed =====");
                             sentinel = false;
                         }else if(delete == 2){
-                            System.out.println("Cancellation of removal of member "+name);
+                            System.out.println("==== Cancellation of removal of member "+name+" ====");
                             sentinel = false;
                         }
                     }else{
                         scanner.nextLine();
-                        System.out.println("Wrong input, please enter [1] or [2]");
+                        System.out.println("\n========= INVALID INPUT ==========\n=         Enter [1] or [2]         =\n==================================\n");
                     }
                 }else {
-                    System.out.println("Could not find member "+name);
-                    System.out.println("Enter name of member to remove");
+                    System.out.println("==== Could not find member "+name+" ====");
+                    System.out.println("==== Enter name of member to remove =====");
                     name = scanner.nextLine();
                 }
 
 
             }catch(Exception e){
-                System.out.println("Invalid input");
+                System.out.println("\n========= INVALID INPUT ==========\n=         Enter [1] or [2]         =\n==================================\n");
             }
 
         }

@@ -23,7 +23,7 @@ public class Chairman extends Employee{
                    Database.printMemberList();
                    break;
                default:
-                   System.out.println("==== Wrong input ====");
+                   System.out.println("\n========= INVALID INPUT ==========");
                    break;
            }
            presentOptions();
@@ -44,7 +44,7 @@ public class Chairman extends Employee{
                     Database.addStandardMember();
                     control = false;
                 }else{
-                    System.out.println("\n=========INVALID INPUT==========\n=        ENTER [1] OR [2]        =\n================================\n");
+                    System.out.println("\n========= INVALID INPUT ==========\n=         Enter [1] or [2]         =\n==================================\n");
                 }
             }catch(Exception e){
                 System.out.println("\n======== INVALID INPUT =========\n=       Enter [1] or [2]       =\n================================\n");

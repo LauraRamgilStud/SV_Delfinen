@@ -34,18 +34,18 @@ public class Member {
     //Bruges i toString metoden
     public String getStatusString(){
         if(membership.getStatus()){
-            return "= Status: active";
+            return "= Status: active =";
         }else{
-            return "= Status: passive";
+            return "= Status: passive =";
         }
     }
 
     //Bruges i toString metoden
     public String getPayedString(){
         if(hasPaid){
-            return "= Payment status: payed";
+            return "= Payment status: payed =";
         }else{
-            return "= Payment status: not payed";
+            return "= Payment status: not payed =";
         }
     }
 

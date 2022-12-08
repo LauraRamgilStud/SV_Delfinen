@@ -44,7 +44,7 @@ public class SCDolphin {
                     coach[3].coachMenu(coach[3].getDiscipline());
                     break;
                 default:
-                    System.out.println("Invalid input.");
+                    System.out.println("\n========= INVALID INPUT ==========");
                     break;
             }
             System.out.println("\n==============================\n= You are logged out.        =\n==============================\n\n==============================\n= Please enter your ID       =\n==============================\n");
