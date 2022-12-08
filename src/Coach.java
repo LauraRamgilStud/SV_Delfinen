@@ -53,119 +53,81 @@ public class Coach extends Employee {
         int input = scanner.nextInt();
 
         while (input != 0) {
-            switch (input) {
-                case 1:
-                    printPopulateCoachStudentList();
-                    break;
-                case 2: //Add training or view trainings
-                    System.out.println("Do you want to View [1] or add [2]");
-                    input = scanner.nextInt();
-                    switch (input){
-                        case 1: //view training list
-                            printPopulateCoachStudentList();
-                            System.out.println("Enter name of swimmer:");
-                            Scanner scan1 = new Scanner(System.in);
-                            String name1 = scan1.nextLine();
-                            CompSwimmer compS1 = getSwimmerByName(name1);
-                            compS1.viewTrainings();
-                            break;
-                        case 2: //add training
-                            try{
-                                System.out.println("Enter name of swimmer:");
-                                Scanner scan2 = new Scanner(System.in);
-                                String name2 = scan2.nextLine();
-                                System.out.println("Enter Date: [dd-MM-yyyy]");
-                                String date = scanner.next();
-                                System.out.println("Enter time:");
-                                String time = scanner.next();
-                                CompSwimmer compS2 = getSwimmerByName(name2);
-                                compS2.addTraining(date, time);
+            try {
+                switch (input) {
+                    case 1:
+                        printPopulateCoachStudentList();
+                        break;
+                    case 2: //Add training or view trainings
+                        System.out.println("Do you want to View [1] or add [2]");
+                        input = scanner.nextInt();
+                        switch (input) {
+                            case 1: //view training list
+                                //printPopulateCoachStudentList();
+                                CompSwimmer compS = getSwimmerByName();
+                                compS.viewTrainings();
+                                break;
+                            case 2: //add training
+                                try {
+                                    addTraining();
 
-                            }catch (Exception e){
-                                e.getStackTrace();
-                            }
+                                } catch (Exception e) {
+                                    e.getStackTrace();
+                                }
+                                break;
+                        }
+                        break;
+                    case 3:
+                        System.out.println("Do you want to View [1], add [2], edit [3] or delete [4]");
+                        input = scanner.nextInt();
+                        switch (input) {
+                            case 1: //view
+                                CompSwimmer compS = getSwimmerByName();
+                                compS.viewEvents();
+                                break;
+                            case 2: //add
+                                try {
+                                    addEvent();
 
-                            break;
-                    }
-                    break;
-                case 3:
-                    System.out.println("Do you want to View [1], add [2], edit [3] or delete [4]");
-                    input = scanner.nextInt();
-                    switch (input){
-                        case 1: //view
-                            printPopulateCoachStudentList();
-                            System.out.println("Enter name of swimmer:");
-                            Scanner scan1 = new Scanner(System.in);
-                            String name1 = scan1.nextLine();
-                            CompSwimmer compS1 = getSwimmerByName(name1);
-                            compS1.viewEvents();
-                            break;
-                        case 2: //add
-                            try{
-                                System.out.println("Enter name of swimmer:");
-                                Scanner scan2 = new Scanner(System.in);
-                                String name2 = scan2.nextLine();
-                                System.out.println("Enter name of event");
-                                String eventName = scanner.next();
-                                System.out.println("Enter date of event:");
-                                String date = scanner.next();
-                                CompSwimmer compS2 = getSwimmerByName(name2);
-                                compS2.addEvent(eventName, date);
-
-                            }catch (Exception e){
-                                e.getStackTrace();
-                            }
-                            break;
-                        case 3:
-                            //edit
-                            System.out.println("Do you want to add time [1], position [2] or both [3]");
-                            input = scanner.nextInt();
-                            switch (input){
-                                case 1: //edit time
-                                    System.out.println("Enter name of swimmer:");
-                                    Scanner scan3 = new Scanner(System.in);
-                                    String name3 = scan3.nextLine();
-                                    System.out.println("Enter name of event");
-                                    String eventName = scanner.next();
-                                    System.out.println("Enter time to add");
-                                    String time = scanner.next();
-                                    CompSwimmer compS3 = getSwimmerByName(name3);
-                                    compS3.addTime(eventName, time);
-
-                                    break;
-                                case 2: //edit position
-                                    System.out.println("Enter name of swimmer:");
-                                    Scanner scan4 = new Scanner(System.in);
-                                    String name4 = scan4.nextLine();
-                                    System.out.println("Enter name of event:");
-                                    String eventName1 = scanner.next();
-                                    System.out.println("Enter position:");
-                                    int position = scanner.nextInt();
-                                    CompSwimmer compS4 = getSwimmerByName(name4);
-                                    compS4.addPosition(eventName1, position);
-                                    break;
-                                case 3:
-                                    //edit both
-                                    //CompSwimmer.addTimeAndPosition;
-                                    break;
-                            }
-                            break;
-                        case 4:
-                            //delete
-                            //CompSwimmer.removeEvent;
-                            break;
-                    }
-                    //event
-                    break;
-                case 4: //top 5 swimmers
-                    getTopFiveSwimmersMenu();
-                    break;
-                default:
-                    System.out.println("Wrong input");
-                    break;
+                                } catch (Exception e) {
+                                    e.getStackTrace();
+                                }
+                                break;
+                            case 3:
+                                //edit
+                                System.out.println("Do you want to add time [1], position [2] or both [3]");
+                                input = scanner.nextInt();
+                                switch (input) {
+                                    case 1: //edit time
+                                        addTimeToEvent();
+                                        break;
+                                    case 2: //edit position
+                                        addPositionToEvent();
+                                        break;
+                                    case 3:
+                                        addTimeAndPositionToEvent();
+                                        break;
+                                }
+                                break;
+                            case 4:
+                                deleteEvent();
+                                break;
+                        }
+                        //event
+                        break;
+                    case 4: //top 5 swimmers
+                        getTopFiveSwimmersMenu();
+                        break;
+                    default:
+                        System.out.println("=== Wrong input ===");
+                        break;
+                }
+                printMenu();
+                input = scanner.nextInt();
+            }catch(Exception e){
+                System.out.println("\n=========INVALID INPUT==========\n=    Enter [1], [2], [3] or [4]    =\n================================\n");
+                scanner.nextInt();
             }
-            printMenu();
-            input = scanner.nextInt();
         }
     }
     public static void getTopFiveSwimmersMenu(){
@@ -193,27 +155,18 @@ public class Coach extends Employee {
         Collections.sort(topSwimmers);
         System.out.println("\n===========TOP 5==============\n");
         int index = 0;
-        for(CompSwimmer toppi : topSwimmers){
-            System.out.println("Time: " + toppi.getBestTraining() + " Name: " + toppi.getName());
-            index++;
-            if(index == 5){
-                break;
+        for (CompSwimmer toppi : list) {
+            if(toppi.getBestTraining() != null) {
+                System.out.println((index+1)+". Time: " + toppi.getBestTraining() + " Name: " + toppi.getName());
+                index++;
+                if (index == 5) {
+                    break;
+                }
             }
         }
     }
-    public static void getTopFiveSwimmersSenior(){
-        ArrayList<CompSwimmer> topSwimmers = (ArrayList<CompSwimmer>) seniorList.clone();
-        Collections.sort(topSwimmers);
-        int index = 0;
-        for(CompSwimmer toppi : topSwimmers){
-            System.out.println(toppi);
-            index++;
-            if(index == 5){
-                break;
-            }
-        }
-    }
-    public void printMenu(){
+
+    public void printMenu() {
         System.out.println("\n=============== MENU =================");
         System.out.println("= [1] View student list              =");
         System.out.println("= [2] View or add training           =");
@@ -234,19 +187,133 @@ public class Coach extends Employee {
     public void setDiscipline(Discipline discipline) {
         this.discipline = discipline;
     }
-    public Discipline getDiscipline() { return discipline; }
-    public CompSwimmer getSwimmerByName(String name){
-        for (CompSwimmer compS : juniorList) {
-            if (compS.getName().equals(name)) {
-                return compS;
-            }else{
-                for (CompSwimmer compS1 : seniorList) {
-                    if (compS1.getName().equals(name)) {
-                        return compS1;
-                    }
-                }
+
+    public CompSwimmer getSwimmerByName() {
+        System.out.println("\n==============================\n=   ENTER NAME OF SWIMMER    =\n==============================\n");
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+
+        for(CompSwimmer c: seniorList){
+            if(c.getName().equals(name)){
+                return c;
             }
         }
+
         return null;
+    }
+
+    public void addTimeToEvent() {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            CompSwimmer compS = getSwimmerByName();
+            if (compS == null) {
+                System.out.println("==== Member does not exist ====");
+            } else {
+                System.out.println("\n==============================\n=    ENTER NAME OF EVENT     =\n==============================\n");
+                String eventName = scanner.nextLine();
+                System.out.println("\n==============================\n=     ENTER TIME TO ADD      =\n=        [MM-SS-MS]          =\n==============================\n");
+                String time = scanner.nextLine();
+                compS.addTime(eventName, time);
+                System.out.println("==== Time successfully added ====");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void addPositionToEvent() {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            CompSwimmer compS = getSwimmerByName();
+            if(compS == null){
+                System.out.println("==== Could not find swimmer ====");
+            }else {
+                System.out.println("\n==============================\n=    ENTER NAME OF EVENT     =\n==============================\n");
+                String eventName = scanner.nextLine();
+                System.out.println("\n==============================\n=       ENTER POSITION       =\n==============================\n");
+                int position = scanner.nextInt();
+                compS.addPosition(eventName, position);
+                System.out.println("==== Position successfully added ====");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void addTimeAndPositionToEvent() {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            CompSwimmer compS = getSwimmerByName();
+            if(compS == null){
+                System.out.println("==== Could not find swimmer ====");
+            }else {
+                System.out.println("\n==============================\n=    ENTER NAME OF EVENT     =\n==============================\n");
+                String eventName = scanner.nextLine();
+                System.out.println("\n==============================\n=       ENTER POSITION       =\n==============================\n");
+                int position = scanner.nextInt();
+                System.out.println("\n==============================\n=     ENTER TIME TO ADD      =\n=        [MM-SS-MS]          =\n==============================\n");
+                String time = scanner.next();
+                compS.addTimeAndPosition(eventName, position, time);
+                System.out.println("==== Time and position successfully added ====");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteEvent() {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            CompSwimmer compS = getSwimmerByName();
+            if(compS == null){
+                System.out.println("==== Could not find swimmer ====");
+            }else {
+                System.out.println("\n==============================\n=    ENTER NAME OF EVENT     =\n==============================\n");
+                String eventName = scanner.nextLine();
+                compS.removeEvent(eventName);
+                System.out.println("==== Event successfully deleted ====");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void addEvent() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            CompSwimmer compS = getSwimmerByName();
+            if(compS == null) {
+                System.out.println("==== Could not find swimmer ====");
+            }else {
+                System.out.println("\n==============================\n=    ENTER NAME OF EVENT     =\n==============================\n");
+                String eventName = scanner.nextLine();
+                System.out.println("\n==============================\n=    ENTER DATE OF EVENT     =\n=       [DD-MM-YYYY]         =\n==============================\n");
+                String date = scanner.nextLine();
+                compS.addEvent(eventName, date);
+                System.out.println("==== Event successfully added ====");
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+    }
+
+    public void addTraining() {
+        try {
+            CompSwimmer compS = getSwimmerByName();
+            Scanner scanner = new Scanner(System.in);
+            if(compS == null){
+                System.out.println("==== Could not find swimmer ====");
+            }else {
+                System.out.println("\n==============================\n=   ENTER DATE OF TRAINING    =\n=       [DD-MM-YYYY]         =\n==============================\n");
+                String date = scanner.next();
+                System.out.println("\n==============================\n=   ENTER TIME FROM TRAINING  =\n=        [MM-SS-MS]          =\n==============================\n");
+                String time = scanner.next();
+                compS.addTraining(date, time);
+                System.out.println("==== Training successfully added ====");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

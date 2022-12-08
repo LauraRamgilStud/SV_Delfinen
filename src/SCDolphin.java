@@ -16,8 +16,8 @@ public class SCDolphin {
         coach[3] = new Coach("337", Discipline.BREASTSTROKE);
 
         System.out.println("\n============ MENU ============");
-        System.out.println("= Program start successful   =");
-        System.out.println("=                            =\n= Please enter your ID       =");
+        System.out.println("=  Program start successful  =");
+        System.out.println("=                            =\n=    Please enter your ID    =");
         System.out.println("==============================\n");
 
         Scanner scanner = new Scanner(System.in);

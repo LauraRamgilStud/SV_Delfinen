@@ -10,25 +10,38 @@ public class Database {
 
     public static void addStandardMember(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("====================\nPlease enter\nName: ");
+        System.out.println("\n============ENTER=============\n=                            =\n=============NAME=============\n");
         String name = scanner.nextLine();
-        System.out.println("Birthday: ");
+        System.out.println("===========BIRTHDAY===========\n=         dd-mm-yyyy         =\n");
         String inputBirthday = scanner.nextLine();
-        System.out.println("Status: ");
-        boolean status = scanner.nextBoolean();
+        System.out.println("============STATUS============\n=  [1] AKTIVE   [2] PASSIVE  =\n");
+        int inputStatus = scanner.nextInt();
+        boolean status = false;
+        if(inputStatus == 1){
+            status = true;
+        } else if(inputStatus == 2){
+            status = false;
+        }
         memberList.add(new Member(name, inputBirthday, status));
         updateDBFile();
+        System.out.println("==========SUCCESSFUL==========");
     }
 
     public static void addCompetitiveMember(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("====================\nPlease enter\nName: ");
+        System.out.println("\n============ENTER=============\n=                            =\n=============NAME=============\n");
         String name = scanner.nextLine();
-        System.out.println("Birthday: ");
+        System.out.println("===========BIRTHDAY===========\n=         dd-mm-yyyy         =\n");
         String inputBirthday = scanner.nextLine();
-        System.out.println("Status: ");
-        boolean status = scanner.nextBoolean();
-        System.out.println("Discipline [1. Backcrawl], [2. Crawl], [3. Breaststroke] or [4. Butterfly]: ");
+        System.out.println("============STATUS============\n=  [1] AKTIVE   [2] PASSIVE  =\n");
+        int inputStatus = scanner.nextInt();
+        boolean status = false;
+        if(inputStatus == 1){
+            status = true;
+        } else if(inputStatus == 2){
+            status = false;
+        }
+        System.out.println("===========DISCIPLINE=============\n= [1] BACKCRAWL    [2] CRAWL     =\n= [3] BREASTSTROKE [4] BUTTERFLY =\n");
         int dis = scanner.nextInt();
         Discipline discipline = null;
         if(dis == 1){
@@ -42,13 +55,13 @@ public class Database {
         }
         memberList.add(new CompSwimmer(name, inputBirthday, status, discipline));
         updateDBFile();
+        System.out.println("==========SUCCESSFUL==========");
     }
 
     public static ArrayList<Member> getMemberList() {
         return memberList;
     }
 
-    //Kig på
     public static void removeMemberByName(){
         System.out.println("Enter name of member to remove");
         Scanner scanner = new Scanner(System.in);
@@ -234,6 +247,7 @@ public class Database {
                     }
                 }
             }
+            output.close();
         } catch(FileNotFoundException e){
             e.printStackTrace();
         }
