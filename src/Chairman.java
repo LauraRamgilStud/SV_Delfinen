@@ -8,8 +8,6 @@ public class Chairman extends Employee{
        Scanner scanInput = new Scanner(System.in);
        int input = scanInput.nextInt();
 
-       //Catch if the input is not a number
-        // Hvad  hvis de har et mellemnavn
        while(input != 0){
            switch (input){
                case 1:
