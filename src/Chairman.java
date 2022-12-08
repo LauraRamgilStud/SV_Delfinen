@@ -25,7 +25,7 @@ public class Chairman extends Employee{
                    Database.printMemberList();
                    break;
                default:
-                   System.out.println("Wrong input");
+                   System.out.println("==== Wrong input ====");
                    break;
            }
            presentOptions();
@@ -33,7 +33,7 @@ public class Chairman extends Employee{
        }
     }
     public void addNewMember(){
-        System.out.println("\n=========ADD MEMBER===========\n= [1] COMPETITIVE            =\n= [2] STANDARD               =\n==============================");
+        System.out.println("\n=========ADD MEMBER===========\n= [1] competitive            =\n= [2] standard               =\n==============================");
         Scanner scanInput = new Scanner(System.in);
         boolean control = true;
         while (control){
@@ -46,7 +46,7 @@ public class Chairman extends Employee{
                     Database.addStandardMember();
                     control = false;
                 }else{
-                    System.out.println("Input not valid: Enter [1] or [2]");
+                    System.out.println("\n=========INVALID INPUT==========\n=        ENTER [1] OR [2]        =\n================================\n");
                 }
             }catch(Exception e){
                 System.out.println("Input not valid: Enter [1] or [2]");
@@ -56,7 +56,7 @@ public class Chairman extends Employee{
     }
     public void editMember(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n==============================\n=    Enter member's name     =\n==============================\n");
+        System.out.println("\n==============================\n=    ENTER MEMBER'S NAME     =\n==============================\n");
         try{
             String input = scanner.nextLine();
             for(Member member : Database.getMemberList()){

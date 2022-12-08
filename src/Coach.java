@@ -133,10 +133,9 @@ public class Coach extends Employee {
     public static void getTopFiveSwimmersMenu(){
         System.out.println("\n======================================\n= [1] View Top 5 Junior Swimmers     =\n= [2] View Top 5 Senior Swimmers     =\n======================================\n");
         Scanner scanner = new Scanner(System.in);
-
-        try{
+        try {
             int input = scanner.nextInt();
-            switch (input){
+            switch (input) {
                 case 1:
                     Coach.getTopFiveSwimmersJunior();
                     break;
@@ -146,7 +145,8 @@ public class Coach extends Employee {
                 default:
                     System.out.println("\n==============================\n=       INVALID INPUT        =\n==============================\n");
                     break;
-            }} catch(Exception e){
+            }
+        } catch (Exception e) {
             System.out.println("\n==============================\n=       INVALID INPUT        =\n==============================\n");
         }
     }

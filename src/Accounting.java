@@ -52,7 +52,7 @@ public class Accounting {
     public static void changeSpecificPayment(){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n==============================\n=    Enter member's name     =\n==============================\n");
+        System.out.println("\n==============================\n=    ENTER MEMBER'S NAME     =\n==============================\n");
         try{
         String input = scanner.nextLine();
         for(Member member : Database.getMemberList()){
