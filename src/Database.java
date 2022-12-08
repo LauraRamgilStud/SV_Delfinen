@@ -1,3 +1,4 @@
+import javax.annotation.processing.SupportedSourceVersion;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -63,34 +64,46 @@ public class Database {
     }
 
     public static void removeMemberByName(){
-        System.out.println("Enter name of member to remove");
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter name of member to remove");
+        String name = scanner.nextLine();
+        Member memberToDelete = null;
         boolean sentinel = true;
-        //memberList.removeIf(m1 -> m1.getName().equals(name));
 
-        while(sentinel){
+        while(sentinel) {
             try{
-                String name = scanner.next();
                 for(Member m: memberList){
                     if(m.getName().equals(name)){
-                        System.out.println("Member exist in system");
-                        System.out.println("Are you sure you want to remove " + name + "?");
-                        System.out.println("[1] Yes\n[2] No");
-                        while(!scanner.hasNextInt()){
-                            //System.out.println("Input not valid: Enter [1] or [2]");
-                            if(scanner.nextInt() == 1){
-                                memberList.removeIf(m1 -> m1.getName().equals(name));
-                            }else{
-                                System.out.println("Cancellation of removal of member " + name);
-                            }
-                            sentinel = false;
-                        }
+                        memberToDelete = m;
                     }
                 }
-            }catch(InputMismatchException e){
-                System.out.println("Input not valid");
-                e.printStackTrace();
+                if(memberToDelete != null){
+                    System.out.println("Delete member "+name+"\n[1] Yes\n[2] No");
+                    if(scanner.hasNextInt()){
+                        int delete = scanner.nextInt();
+                        if(delete == 1){
+                            memberList.remove(memberToDelete);
+                            System.out.println("Member "+name+" has been removed");
+                            sentinel = false;
+                        }else if(delete == 2){
+                            System.out.println("Cancellation of removal of member "+name);
+                            sentinel = false;
+                        }
+                    }else{
+                        scanner.nextLine();
+                        System.out.println("Wrong input, please enter [1] or [2]");
+                    }
+                }else {
+                    System.out.println("Could not find member "+name);
+                    System.out.println("Enter name of member to remove");
+                    name = scanner.nextLine();
+                }
+
+
+            }catch(Exception e){
+                System.out.println("Invalid input");
             }
+
         }
         updateDBFile();
     }
@@ -163,33 +176,6 @@ public class Database {
             return 1 + "/" + member.getName() + "/" + member.getBirthday() + "/" + member.getMembership().getStatus() + "/" + member.getHasPaid();
         }
     }
-
-    public static void updateTrainingAndEventFile(){
-
-                try{
-                    File fileReadOnly = new File("trainingAndEventFile.txt");
-                    PrintStream outputReadOnly = new PrintStream(fileReadOnly);
-
-                    for(Member m: memberList){
-                        outputReadOnly.println(toStringReadOnlyMembers(m));
-                    }
-                } catch(FileNotFoundException e){
-                    e.printStackTrace();
-                }
-
-
-    }
-
-    /*public static String toStringTrainingAndEvents(Object object){
-        if(object instanceof CompSwimmer){
-            CompSwimmer compSwimmer = (CompSwimmer) object;
-            ArrayList<Event> eventList = compSwimmer.getEventList();
-            String toReturn = compSwimmer.getName();
-            for(Event e: eventList){
-
-            }
-        }
-    }*/
 
     public static void updateEventFile(){
         try{

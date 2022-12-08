@@ -1,54 +1,18 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.Writer;
-import java.sql.Array;
-import java.io.IOException;
 import java.util.*;
 
 public class Coach extends Employee {
     private Discipline discipline;
-    private static ArrayList<CompSwimmer> seniorList = new ArrayList<>();
-    private static ArrayList<CompSwimmer> juniorList = new ArrayList<>();
+    private ArrayList<CompSwimmer> seniorList = new ArrayList<>();
+    private ArrayList<CompSwimmer> juniorList = new ArrayList<>();
 
     public Coach(String id, Discipline discipline) {
         super(id);
         this.discipline = discipline;
     }
-    public void populateCoachStudentList(Discipline discipline) {
-        //while((Member member = reader.readMember())!= null) {
-        for (Member member : Database.getMemberList()) {
-            if (member.getMembership().getStatus() && member instanceof CompSwimmer) {
-                int age = member.getMembership().getAge(member.getBirthday());
-                Discipline memberDiscipline = ((CompSwimmer) member).getDiscipline();
-                if (age >= 18) {  //if (member.getBirthday())
-                    if (memberDiscipline == discipline) {
-                        seniorList.add((CompSwimmer) member);
-                        /*Writer.write(String.valueOf(seniorList));
-                        Writer.close();*/
-                    }
-                } else {
-                    if (memberDiscipline == discipline) {
-                        juniorList.add((CompSwimmer) member);
-                    }
 
-                }
-            }
-        }
-        //reader.close(); /* https://stackoverflow.com/questions/5343689/java-reading-a-file-into-an-arraylist */
-    }
     public void coachMenu(Discipline discipline) {
         populateCoachStudentList(discipline);
-
-        System.out.println("\n================ MENU =================");
-        System.out.println("= [1] View student list               =");
-        System.out.println("= [2] View or add training            ="); //&view som 1
-        System.out.println("= [3] View, add, edit or delete event ="); //&view som 1
-        System.out.println("= [4] view top 5 swimmers             =");
-        System.out.println("= [0] Log Out                         =");
-        System.out.println("=======================================\n");
-
+        printMenu();
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
 
@@ -130,17 +94,18 @@ public class Coach extends Employee {
             }
         }
     }
-    public static void getTopFiveSwimmersMenu(){
+
+    public void getTopFiveSwimmersMenu() {
         System.out.println("\n======================================\n= [1] View Top 5 Junior Swimmers     =\n= [2] View Top 5 Senior Swimmers     =\n======================================\n");
         Scanner scanner = new Scanner(System.in);
         try {
             int input = scanner.nextInt();
             switch (input) {
                 case 1:
-                    Coach.getTopFiveSwimmersJunior();
+                    getTopFiveSwimmers(juniorList);
                     break;
                 case 2:
-                    Coach.getTopFiveSwimmersSenior();
+                    getTopFiveSwimmers(seniorList);
                     break;
                 default:
                     System.out.println("\n==============================\n=       INVALID INPUT        =\n==============================\n");
@@ -150,10 +115,10 @@ public class Coach extends Employee {
             System.out.println("\n==============================\n=       INVALID INPUT        =\n==============================\n");
         }
     }
-    public static void getTopFiveSwimmersJunior(){
-        ArrayList<CompSwimmer> topSwimmers = (ArrayList<CompSwimmer>) juniorList.clone();
-        Collections.sort(topSwimmers);
-        System.out.println("\n===========TOP 5==============\n");
+
+    public void getTopFiveSwimmers(ArrayList<CompSwimmer> list) {
+        Collections.sort(list);
+        System.out.println("\n=========== TOP 5 ==============\n");
         int index = 0;
         for (CompSwimmer toppi : list) {
             if(toppi.getBestTraining() != null) {
@@ -175,17 +140,40 @@ public class Coach extends Employee {
         System.out.println("= [0] Log Out                        =");
         System.out.println("======================================\n");
     }
-    private void printPopulateCoachStudentList() {
-        for(CompSwimmer compSwimmer: juniorList){
-            System.out.println(compSwimmer.toString());
-        }
-        System.out.println();
-        for(CompSwimmer compSwimmer: seniorList){
-            System.out.println(compSwimmer.toString());
+
+    public void populateCoachStudentList(Discipline discipline) {
+        try {
+            for (Member c : Database.getMemberList()) {
+                if (c instanceof CompSwimmer && ((CompSwimmer) c).getDiscipline() == discipline) {
+                    CompSwimmer compSwimmer = (CompSwimmer) c;
+                    System.out.println(compSwimmer.getName());
+                    int age = compSwimmer.getMembership().getAge(compSwimmer.getBirthday());
+                    if (age <= 18) {
+                        juniorList.add(compSwimmer);
+                    } else {
+                        seniorList.add(compSwimmer);
+                    }
+                }
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
         }
     }
-    public void setDiscipline(Discipline discipline) {
-        this.discipline = discipline;
+
+    private void printPopulateCoachStudentList() {
+        System.out.print("===== Junior Swimmers =====\n");
+        for (CompSwimmer compSwimmer : juniorList) {
+            System.out.println(compSwimmer.getName());
+        }
+        System.out.println();
+        System.out.print("===== Senior Swimmers =====\n");
+        for (CompSwimmer compSwimmer : seniorList) {
+            System.out.println(compSwimmer.getName());
+        }
+    }
+
+    public Discipline getDiscipline() {
+        return discipline;
     }
 
     public CompSwimmer getSwimmerByName() {
