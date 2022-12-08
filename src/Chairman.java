@@ -33,7 +33,7 @@ public class Chairman extends Employee{
        }
     }
     public void addNewMember(){
-        System.out.println("\n=========ADD MEMBER===========\n= [1] competitive            =\n= [2] standard               =\n==============================");
+        System.out.println("\n========= ADD MEMBER ===========\n= [1] competitive              =\n= [2] standard                 =\n================================");
         Scanner scanInput = new Scanner(System.in);
         boolean control = true;
         while (control){
@@ -49,7 +49,7 @@ public class Chairman extends Employee{
                     System.out.println("\n=========INVALID INPUT==========\n=        ENTER [1] OR [2]        =\n================================\n");
                 }
             }catch(Exception e){
-                System.out.println("Input not valid: Enter [1] or [2]");
+                System.out.println("\n======== INVALID INPUT =========\n=       Enter [1] or [2]       =\n================================\n");
                 scanInput.nextLine();
             }
         }
@@ -61,7 +61,7 @@ public class Chairman extends Employee{
             String input = scanner.nextLine();
             for(Member member : Database.getMemberList()){
                 if(input.equals(member.getName())){
-                    System.out.println("\n========CHANGE STATUS=========\n= [1] active                 =\n= [2] passive                =\n==============================\n");
+                    System.out.println("\n======== CHANGE STATUS =========\n= [1] active                   =\n= [2] passive                  =\n================================\n");
                     int inputInt = scanner.nextInt();
                     if(inputInt == 1) {
                         member.getMembership().setStatus(true);
@@ -74,7 +74,7 @@ public class Chairman extends Employee{
                     }
                 }
             } } catch (Exception e){
-            System.out.println("\n========INVALID INPUT=========\n=      ENTER [1] OR [2]      =\n==============================\n");
+            System.out.println("\n======== INVALID INPUT =========\n=       Enter [1] or [2]       =\n================================\n");
             scanner.nextInt();
         }
     }

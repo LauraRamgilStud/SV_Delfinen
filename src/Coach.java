@@ -23,7 +23,7 @@ public class Coach extends Employee {
                         printPopulateCoachStudentList();
                         break;
                     case 2: //Add training or view trainings
-                        System.out.println("Do you want to View [1] or add [2]");
+                        System.out.println("========================================\n=  Do you want to View [1] or add [2]  =\n========================================");
                         input = scanner.nextInt();
                         switch (input) {
                             case 1: //view training list
@@ -42,7 +42,7 @@ public class Coach extends Employee {
                         }
                         break;
                     case 3:
-                        System.out.println("Do you want to View [1], add [2], edit [3] or delete [4]");
+                        System.out.println("==============================================================\n=  Do you want to View [1], add [2], edit [3] or delete [4]  =\n==============================================================");
                         input = scanner.nextInt();
                         switch (input) {
                             case 1: //view
@@ -59,7 +59,7 @@ public class Coach extends Employee {
                                 break;
                             case 3:
                                 //edit
-                                System.out.println("Do you want to add time [1], position [2] or both [3]");
+                                System.out.println("===========================================================\n=  Do you want to add time [1], position [2] or both [3]  =\n===========================================================");
                                 input = scanner.nextInt();
                                 switch (input) {
                                     case 1: //edit time
@@ -292,9 +292,9 @@ public class Coach extends Employee {
             if(compS == null){
                 System.out.println("==== Could not find swimmer ====");
             }else {
-                System.out.println("\n==============================\n=   ENTER DATE OF TRAINING    =\n=       [DD-MM-YYYY]         =\n==============================\n");
+                System.out.println("\n==============================\n=   ENTER DATE OF TRAINING   =\n=       [DD-MM-YYYY]         =\n==============================\n");
                 String date = scanner.next();
-                System.out.println("\n==============================\n=   ENTER TIME FROM TRAINING  =\n=        [MM-SS-MS]          =\n==============================\n");
+                System.out.println("\n==============================\n=  ENTER TIME FROM TRAINING  =\n=        [MM-SS-MS]          =\n==============================\n");
                 String time = scanner.next();
                 compS.addTraining(date, time);
                 System.out.println("==== Training successfully added ====");

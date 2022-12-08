@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Accounting {
     private static double sum;
     public static void viewOverdueInvoices(){
-        System.out.println("\n======OVERDUE INVOICES=======\n");
+        System.out.println("\n====== OVERDUE INVOICES =======\n");
         for(Member member : Database.getMemberList()){
             if (!member.getHasPaid()){  //if (member.getHasPaid() == false)
                 System.out.println(member);
@@ -14,7 +14,7 @@ public class Accounting {
     public static void calculateExpectedIncome(){
         for(Member member : Database.getMemberList()){
             sum += member.getMembership().getFee();
-            System.out.println("\n======EXPECTED INCOME========\n=        "+ sum +" DKK\n==============================\n");
+            System.out.println("\n====== EXPECTED INCOME ========\n=        "+ sum +" DKK" + "           \n===============================\n");
         }
     }
     public static void calculateActualIncome(){
@@ -57,7 +57,7 @@ public class Accounting {
         String input = scanner.nextLine();
         for(Member member : Database.getMemberList()){
             if(input.equals(member.getName())){
-                System.out.println("\n========CHANGE STATUS=========\n= [1] paid                   =\n= [2] unpaid                 =\n==============================\n");
+                System.out.println("\n======== CHANGE STATUS =========\n= [1] paid                     =\n= [2] unpaid                   =\n================================\n");
                 int inputInt = scanner.nextInt();
                 if(inputInt == 1) {
                     member.setHasPaid(true);
@@ -70,13 +70,13 @@ public class Accounting {
                 }
             }
         } } catch (Exception e){
-            System.out.println("\n========INVALID INPUT=========\n=      ENTER [1] OR [2]      =\n==============================\n");
+            System.out.println("\n======== INVALID INPUT =========\n=       Enter [1] or [2]       =\n================================\n");
             scanner.nextInt();
         }
     }
     public static void changeAllPaymentStatus(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n========CHANGE STATUS=========\n= [1] paid                   =\n= [2] unpaid                 =\n==============================\n");
+        System.out.println("\n======== CHANGE STATUS =========\n= [1] paid                     =\n= [2] unpaid                   =\n================================\n");
         try{
         int input = scanner.nextInt();
         for(Member member : Database.getMemberList()){
@@ -90,7 +90,7 @@ public class Accounting {
                 System.out.println("The payment status of each member has been changed to \"unpaid\".");
             }
         }} catch(Exception e){
-            System.out.println("\n========INVALID INPUT=========\n=      ENTER [1] OR [2]      =\n==============================\n");
+            System.out.println("\n======== INVALID INPUT =========\n=       ENTER [1] OR [2]       =\n================================\n");
         }
     }
 }
