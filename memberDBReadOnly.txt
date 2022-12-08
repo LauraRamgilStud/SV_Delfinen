@@ -7,7 +7,6 @@
 1/Lara Larsen/09-08-2003/true/false
 1/Martina Martinsen/04-12-1992/true/false
 2/Gunnar Gunnarsen/03-03-2003/true/BREASTSTROKE/false
-2/Jens Jensen/19-03-1935/true/CRAWL/false
 2/Carol Carolinu/16-07-1965/false/BUTTERFLY/false
 2/Henry Henriksen/03-01-1975/true/BUTTERFLY/false
 2/Ulla Ulriksen/28-02-1999/true/BACKCRAWL/false
@@ -26,3 +25,7 @@
 2/Ino Yamanaka/03-03-1999/true/BUTTERFLY/false
 2/Ichigo Kurosaki/13-10-2005/true/BUTTERFLY/false
 2/Yuugo Hansaki/04-03-2009/true/BUTTERFLY/false
+2/Laura Ramgil/31-03-2008/true/CRAWL/false
+2/Michael Ramgil/31-03-2010/true/CRAWL/false
+2/Mette Met/31-03-2009/true/CRAWL/false
+2/Emil Emil/31-03-2009/true/CRAWL/false

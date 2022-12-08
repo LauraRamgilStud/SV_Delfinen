@@ -52,12 +52,6 @@
 = Payment status: not payed
 = Fee: 1600.0 DKK
 ===============================
-= Name: Jens Jensen
-= Birthday: 19-03-1935
-= Status: active
-= Payment status: not payed
-= Fee: 1200.0 DKK
-===============================
 = Name: Carol Carolinu
 = Birthday: 16-07-1965
 = Status: passive
@@ -162,6 +156,30 @@
 ===============================
 = Name: Yuugo Hansaki
 = Birthday: 04-03-2009
+= Status: active
+= Payment status: not payed
+= Fee: 1000.0 DKK
+===============================
+= Name: Laura Ramgil
+= Birthday: 31-03-2008
+= Status: active
+= Payment status: not payed
+= Fee: 1000.0 DKK
+===============================
+= Name: Michael Ramgil
+= Birthday: 31-03-2010
+= Status: active
+= Payment status: not payed
+= Fee: 1000.0 DKK
+===============================
+= Name: Mette Met
+= Birthday: 31-03-2009
+= Status: active
+= Payment status: not payed
+= Fee: 1000.0 DKK
+===============================
+= Name: Emil Emil
+= Birthday: 31-03-2009
 = Status: active
 = Payment status: not payed
 = Fee: 1000.0 DKK
