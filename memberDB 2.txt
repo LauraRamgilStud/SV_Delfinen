@@ -181,12 +181,6 @@
 = Name: Emil Emil
 = Birthday: 31-03-2009
 = Status: active
-= Payment status: payed
-= Fee: 1000.0 DKK
-===============================
-= Name: Kaninus Ninusen
-= Birthday: 31-03-1999
-= Status: passive
 = Payment status: not payed
-= Fee: 500.0 DKK
+= Fee: 1000.0 DKK
 ===============================
