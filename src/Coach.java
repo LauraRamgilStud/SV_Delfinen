@@ -327,7 +327,7 @@ public class Coach extends Employee {
     public String getValidDateInput(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("""
-                ===========BIRTHDAY===========
+                =============Date=============
                 =         dd-mm-yyyy         =
                 ==============================
                 """);
