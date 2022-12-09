@@ -1,5 +1,4 @@
-import java.util.*;
-
+import java.util.*; //(?)
 public class Coach extends Employee {
     private Discipline discipline;
     private ArrayList<CompSwimmer> seniorList = new ArrayList<>();
@@ -27,7 +26,6 @@ public class Coach extends Employee {
                         input = scanner.nextInt();
                         switch (input) {
                             case 1: //view training list
-                                //printPopulateCoachStudentList();
                                 CompSwimmer compS = getSwimmerByName();
                                 compS.viewTrainings();
                                 break;
