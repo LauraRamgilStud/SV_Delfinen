@@ -1,4 +1,3 @@
-import javax.xml.crypto.Data;
 import java.util.Scanner;
 public class SCDolphin {
     public static void main(String[] args) {
@@ -15,10 +14,7 @@ public class SCDolphin {
         coach[2] = new Coach("336", Discipline.BUTTERFLY);
         coach[3] = new Coach("337", Discipline.BREASTSTROKE);
 
-        System.out.println("\n============ MENU ============");
-        System.out.println("=  Program start successful  =");
-        System.out.println("=                            =\n=    Please enter your ID    =");
-        System.out.println("==============================\n");
+        System.out.println("\n============ MENU ============\n=  Program start successful  =\n=                            =\n=    Please enter your ID    =\n==============================\n");
 
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();

@@ -4,46 +4,34 @@ public class Cashier extends Employee {
         super(id);
     }
 
+    public static void printCashierMenu(){
+        System.out.println("\n============ MENU ============\n= [1] Overdue Invoices       =\n= [2] Expected Income        =\n= [3] Actual Income          =\n= [4] Change Payment Status  =\n= [0] Log Out                =\n==============================\n");
+    }
+
     public static void cashierMenu() {
-        System.out.println("\n============ MENU ============");
-        System.out.println("= [1] Overdue Invoices       =");
-        System.out.println("= [2] Expected Income        =");
-        System.out.println("= [3] Actual Income          =");
-        System.out.println("= [4] Change Payment Status  =");
-        System.out.println("= [0] Log Out                =");
-        System.out.println("==============================\n");
+        printCashierMenu();
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
 
         while (input != 0) {
             switch (input) {
                 case 1:
-                    // View Overdue Invoices
                     Accounting.viewOverdueInvoices();
                     break;
                 case 2:
-                    // Calculate Expected income
                     Accounting.calculateExpectedIncome();
                     break;
                 case 3:
-                    // Calculate Actual Income
                     Accounting.calculateActualIncome();
                     break;
                 case 4:
-                    // Change Payment Status
                     Accounting.changePaymentStatus();
                     break;
                 default:
                     System.out.println("\n=========INVALID INPUT==========\n=    Enter [1], [2], [3] or [4]    =\n================================\n");
                     break;
             }
-            System.out.println("\n============ MENU ============");
-            System.out.println("= [1] Overdue Invoices       =");
-            System.out.println("= [2] Expected Income        =");
-            System.out.println("= [3] Actual Income          =");
-            System.out.println("= [4] Change Payment Status  =");
-            System.out.println("= [0] Log Out                =");
-            System.out.println("==============================\n");
+            printCashierMenu();
             input = scanner.nextInt();
         }
     }
