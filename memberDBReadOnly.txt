@@ -29,3 +29,4 @@
 2/Michael Ramgil/31-03-2010/true/CRAWL/false
 2/Mette Met/31-03-2009/true/CRAWL/false
 2/Emil Emil/31-03-2009/true/CRAWL/false
+1/Kaninus Ninusen/31-03-1999/false/false

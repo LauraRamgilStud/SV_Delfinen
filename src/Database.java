@@ -1,9 +1,10 @@
-import javax.annotation.processing.SupportedSourceVersion;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Database {
 
@@ -131,7 +132,7 @@ public class Database {
         }
     }
 
-   public static void readFile(){
+    public static void readFile(){
        Scanner scanFile = null;
        try {
            scanFile = new Scanner(new File("memberDBReadOnly.txt"));
@@ -263,5 +264,4 @@ public class Database {
             e.printStackTrace();
         }
     }
-
 }

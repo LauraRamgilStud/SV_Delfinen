@@ -13,10 +13,6 @@ public class CompSwimmer extends Member implements Comparable<CompSwimmer>{
         this.discipline = discipline;
     }
 
-    public void setDiscipline(Discipline discipline){
-        this.discipline = discipline;
-    }
-
     public Discipline getDiscipline(){
         return discipline;
     }

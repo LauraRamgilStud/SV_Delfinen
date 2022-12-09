@@ -160,8 +160,7 @@ public class Coach extends Employee {
     public void populateCoachStudentList(Discipline discipline) {
         try {
             for (Member c : Database.getMemberList()) {
-                if (c instanceof CompSwimmer && ((CompSwimmer) c).getDiscipline() == discipline) {
-                    CompSwimmer compSwimmer = (CompSwimmer) c;
+                if (c instanceof CompSwimmer compSwimmer && ((CompSwimmer) c).getDiscipline() == discipline) {
                     int age = compSwimmer.getMembership().getAge(compSwimmer.getBirthday());
                     if (age <= 18) {
                         juniorList.add(compSwimmer);
@@ -312,9 +311,13 @@ public class Coach extends Employee {
             if(compS == null){
                 System.out.println("==== Could not find swimmer ====");
             }else {
-                System.out.println("\n==============================\n=   ENTER DATE OF TRAINING   =\n=       [DD-MM-YYYY]         =\n==============================\n");
-                String date = scanner.next();
-                System.out.println("\n==============================\n=  ENTER TIME FROM TRAINING  =\n=        [MM-SS-MS]          =\n==============================\n");
+                String date = getValidDateInput();
+                System.out.println("""
+                        ==============================
+                        =  ENTER TIME FROM TRAINING  =
+                        =        [MM:SS:MS]          =
+                        ==============================
+                        """);
                 String time = scanner.next();
                 compS.addTraining(date, time);
                 System.out.println("==== Training successfully added ====");

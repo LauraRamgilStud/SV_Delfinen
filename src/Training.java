@@ -1,8 +1,6 @@
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class Training {
     Date date;
     String time;
@@ -14,17 +12,11 @@ public class Training {
         this.time = time;
         stringDate = date;
     }
-
     public String getStringDate() { return stringDate; }
     public Date getDate() {
         return date;
     }
-
     public String getTime() {
         return time;
-    }
-
-    public void setTime(String time){
-        this.time = time;
     }
 }

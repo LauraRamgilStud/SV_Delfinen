@@ -184,3 +184,27 @@
 = Payment status: not payed
 = Fee: 1000.0 DKK
 ===============================
+= Name: Kaninus Ninusen
+= Birthday: 31-03-1999
+= Status: passive
+= Payment status: not payed
+= Fee: 500.0 DKK
+===============================
+= Name: Mil Mil
+= Birthday: 12-12-1970
+= Status: passive
+= Payment status: not payed
+= Fee: 500.0 DKK
+===============================
+= Name: Mil Mil
+= Birthday: 31-03-1990
+= Status: active
+= Payment status: not payed
+= Fee: 1600.0 DKK
+===============================
+= Name: Mil Mil
+= Birthday: 31-03-2000
+= Status: active
+= Payment status: not payed
+= Fee: 1600.0 DKK
+===============================

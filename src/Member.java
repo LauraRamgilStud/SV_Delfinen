@@ -4,7 +4,6 @@ public class Member {
     private boolean hasPaid;
     private Membership membership;
 
-    //Constructor
     public Member(String name, String birthday, boolean status) {
         this.name = name;
         this.birthday = birthday;
@@ -20,7 +19,6 @@ public class Member {
 
     }
 
-    //Getters and setters
     public boolean getHasPaid() { return hasPaid; }
 
     public void setHasPaid(boolean hasPaid) { this.hasPaid = hasPaid; }
@@ -31,7 +29,7 @@ public class Member {
 
     public String getBirthday() { return birthday; }
 
-    //Bruges i toString metoden
+    //gets used in toString method
     public String getStatusString(){
         if(membership.getStatus()){
             return "= Status: active";
@@ -40,7 +38,7 @@ public class Member {
         }
     }
 
-    //Bruges i toString metoden
+    //gets used in toString method
     public String getPayedString(){
         if(hasPaid){
             return "= Payment status: payed";
@@ -48,5 +46,4 @@ public class Member {
             return "= Payment status: not payed";
         }
     }
-
 }
