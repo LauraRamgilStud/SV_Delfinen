@@ -17,34 +17,94 @@ public class SCDolphin {
         System.out.println("\n============ MENU ============\n=  Program start successful  =\n=                            =\n=    Please enter your ID    =\n==============================\n");
 
         Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
+        int input = 1023;
+        while(input == 1023){
+            if(scanner.hasNextInt()){
+                input = scanner.nextInt();
+            }else{
+                scanner.nextLine();
+                System.out.println("""
+                        ================================
+                        =       INVALID LOGIN          =
+                        ================================
+                        """);
+            }
+
+        }
 
         while (input != 0000){
             switch(input){
                 case 122:
                     chairman.menu();
+                    System.out.println("""
+                    ==============================
+                    = You are logged out.        =
+                    ==============================
+                    """);
                     break;
                 case 222:
-                    Cashier.cashierMenu();
+                    cashier.cashierMenu();
+                    System.out.println("""
+                    ==============================
+                    = You are logged out.        =
+                    ==============================
+                    """);
                     break;
                 case 334:
                     coach[0].coachMenu(coach[0].getDiscipline());
+                    System.out.println("""
+                    ==============================
+                    = You are logged out.        =
+                    ==============================
+                    """);
                     break;
                 case 335:
                     coach[1].coachMenu(coach[1].getDiscipline());
+                    System.out.println("""
+                    ==============================
+                    = You are logged out.        =
+                    ==============================
+                    """);
                     break;
                 case 336:
                     coach[2].coachMenu(coach[2].getDiscipline());
+                    System.out.println("""
+                    ==============================
+                    = You are logged out.        =
+                    ==============================
+                    """);
                     break;
                 case 337:
                     coach[3].coachMenu(coach[3].getDiscipline());
+                    System.out.println("""
+                    ==============================
+                    = You are logged out.        =
+                    ==============================
+                    """);
                     break;
                 default:
                     System.out.println("Invalid input.");
                     break;
             }
-            System.out.println("\n==============================\n= You are logged out.        =\n==============================\n\n==============================\n= Please enter your ID       =\n==============================\n");
-            input = scanner.nextInt();
+            System.out.println("""
+                    ==============================
+                    = Please enter your ID       =
+                    ==============================
+                    """);
+            input = 0;
+            while(input == 0){
+                if(scanner.hasNextInt()){
+                    input = scanner.nextInt();
+                }else{
+                    scanner.nextLine();
+                    System.out.println("""
+                        ================================
+                        =       INVALID LOGIN          =
+                        ================================
+                        """);
+                }
+
+            }
         }
     }
 }

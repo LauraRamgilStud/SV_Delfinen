@@ -6,17 +6,26 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Database {
+public class Database{
 
     private static ArrayList<Member> memberList = new ArrayList<>();
 
     public static void addStandardMember(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n============ENTER=============\n=                            =\n=============NAME=============\n");
+        System.out.println("""
+                ==============================
+                =         ENTER NAME         =
+                ==============================
+                """);
         String name = scanner.nextLine();
-        System.out.println("===========BIRTHDAY===========\n=         dd-mm-yyyy         =\n");
-        String inputBirthday = scanner.nextLine();
-        System.out.println("============STATUS============\n=  [1] AKTIVE   [2] PASSIVE  =\n");
+
+        String inputBirthday = getValidDateInput();
+
+        System.out.println("""
+                ============STATUS============
+                =  [1] ACTIVE   [2] PASSIVE  =
+                ==============================
+                """);
         int inputStatus = scanner.nextInt();
         boolean status = false;
         if(inputStatus == 1){
@@ -31,29 +40,66 @@ public class Database {
 
     public static void addCompetitiveMember(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n============ENTER=============\n=                            =\n=============NAME=============\n");
+        System.out.println("""
+                ==============================
+                =         ENTER NAME         =
+                ==============================
+                """);
         String name = scanner.nextLine();
-        System.out.println("===========BIRTHDAY===========\n=         dd-mm-yyyy         =\n");
-        String inputBirthday = scanner.nextLine();
-        System.out.println("============STATUS============\n=  [1] AKTIVE   [2] PASSIVE  =\n");
-        int inputStatus = scanner.nextInt();
+        String inputBirthday = getValidDateInput();
+        System.out.println("""
+                ============STATUS============
+                =  [1] ACTIVE   [2] PASSIVE  =
+                ==============================
+                """);
+        int inputStatus = 0;
         boolean status = false;
-        if(inputStatus == 1){
-            status = true;
-        } else if(inputStatus == 2){
-            status = false;
+        while(inputStatus == 0){
+            if(scanner.hasNextInt()) {
+                inputStatus = scanner.nextInt();
+                if(inputStatus == 1){
+                    status = true;
+                } else if(inputStatus == 2){
+                    status = false;
+                }
+            }else{
+                scanner.nextLine();
+                System.out.println("""
+                        ======== INVALID INPUT =========
+                        =       Enter [1] or [2]       =
+                        ================================
+                        """);
+            }
         }
-        System.out.println("===========DISCIPLINE=============\n= [1] BACKCRAWL    [2] CRAWL     =\n= [3] BREASTSTROKE [4] BUTTERFLY =\n");
-        int dis = scanner.nextInt();
+
+        System.out.println("""
+                ===========DISCIPLINE=============
+                = [1] BACKCRAWL    [2] CRAWL     =
+                = [3] BREASTSTROKE [4] BUTTERFLY =
+                ==================================
+                """);
+        int dis = 0;
         Discipline discipline = null;
-        if(dis == 1){
-            discipline = Discipline.BACKCRAWL;
-        } else if(dis == 2){
-            discipline = Discipline.CRAWL;
-        } else if(dis == 3){
-            discipline = Discipline.BREASTSTROKE;
-        } else if(dis == 4){
-            discipline = Discipline.BUTTERFLY;
+        while(dis == 0) {
+            if(scanner.hasNextInt()){
+                dis = scanner.nextInt();
+                if (dis == 1) {
+                    discipline = Discipline.BACKCRAWL;
+                } else if (dis == 2) {
+                    discipline = Discipline.CRAWL;
+                } else if (dis == 3) {
+                    discipline = Discipline.BREASTSTROKE;
+                } else if (dis == 4) {
+                    discipline = Discipline.BUTTERFLY;
+                }
+            }else{
+                System.out.println("""
+                        ======== INVALID INPUT =========
+                        =  Enter [1], [2], [3] or [4]  =
+                        ================================
+                        """);
+                scanner.nextLine();
+            }
         }
         memberList.add(new CompSwimmer(name, inputBirthday, status, discipline));
         updateDBFile();
@@ -92,7 +138,11 @@ public class Database {
                         }
                     }else{
                         scanner.nextLine();
-                        System.out.println("Wrong input, please enter [1] or [2]");
+                        System.out.println("""
+                        ======== INVALID INPUT =========
+                        =       Enter [1] or [2]       =
+                        ================================
+                        """);
                     }
                 }else {
                     System.out.println("Could not find member "+name);
@@ -130,6 +180,39 @@ public class Database {
         } catch(FileNotFoundException e){
             e.printStackTrace();
         }
+    }
+
+    public static String getValidDateInput(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("""
+                ===========BIRTHDAY===========
+                =         dd-mm-yyyy         =
+                ==============================
+                """);
+        String inputBirthday = scanner.nextLine();
+        while(!isValid(inputBirthday)) {
+            System.out.println("""
+                ================================
+                =        Invalid input         =
+                =   Enter format: dd-mm-yyyy   =
+                ================================
+                """);
+            inputBirthday = scanner.nextLine();
+        }
+
+        return inputBirthday;
+    }
+
+    public static boolean isValid(String dateStr) {
+
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
     }
 
     public static void readFile(){

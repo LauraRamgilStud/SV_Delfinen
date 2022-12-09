@@ -6,49 +6,91 @@ public class Chairman extends Employee{
     public void menu(){
        presentOptions();
        Scanner scanInput = new Scanner(System.in);
-       int input = scanInput.nextInt();
+       int input = 10154;
+       while(input == 10154){
+           if(scanInput.hasNextInt()){
+               input = scanInput.nextInt();
+           }else{
+               scanInput.nextLine();
+               System.out.println("""
+                        =========INVALID INPUT==========
+                        =  Enter [1], [2], [3] or [4]  =
+                        ================================
+                        """);
+           }
+
+       }
 
        while(input != 0){
-           switch (input){
-               case 1:
-                   addNewMember();
-                   break;
-               case 2:
-                   editMember();
-                   break;
-               case 3:
-                   Database.removeMemberByName();
-                   break;
-               case 4:
-                   Database.printMemberList();
-                   break;
-               default:
-                   System.out.println("==== Wrong input ====");
-                   break;
+           try {
+               switch (input) {
+                   case 1:
+                       addNewMember();
+                       break;
+                   case 2:
+                       editMember();
+                       break;
+                   case 3:
+                       Database.removeMemberByName();
+                       break;
+                   case 4:
+                       Database.printMemberList();
+                       break;
+                   default:
+                       System.out.println("==== Wrong input ====");
+                       break;
+               }
+               presentOptions();
+               input = scanInput.nextInt();
+           }catch (Exception e){
+               System.out.println("""
+                        =========INVALID INPUT==========
+                        =  Enter [1], [2], [3] or [4]  =
+                        ================================
+                        """);
            }
-           presentOptions();
-           input = scanInput.nextInt();
        }
     }
     public void addNewMember(){
-        System.out.println("\n========= ADD MEMBER ===========\n= [1] competitive              =\n= [2] standard                 =\n================================");
+        System.out.println("""
+                ========= ADD MEMBER ===========
+                = [1] competitive              =
+                = [2] standard                 =
+                ================================""");
         Scanner scanInput = new Scanner(System.in);
         boolean control = true;
         while (control){
             try{
-                int inputNew = scanInput.nextInt();
-                if(inputNew == 1){
-                    Database.addCompetitiveMember();
-                    control = false;
-                } else if(inputNew == 2){
-                    Database.addStandardMember();
-                    control = false;
-                }else{
-                    System.out.println("\n=========INVALID INPUT==========\n=        ENTER [1] OR [2]        =\n================================\n");
+                if(scanInput.hasNextInt()){
+                    int inputNew = scanInput.nextInt();
+                    if(inputNew == 1){
+                        Database.addCompetitiveMember();
+                        control = false;
+                    } else if(inputNew == 2){
+                        Database.addStandardMember();
+                        control = false;
+                    }else{
+                        System.out.println("""
+                            =========INVALID INPUT==========
+                            =       ENTER [1] OR [2]       =
+                            ================================
+                            """);
+                    }
+                }else {
+                    scanInput.nextLine();
+                    System.out.println("""
+                        ======== INVALID INPUT =========
+                        =       Enter [1] or [2]       =
+                        ================================
+                        """);
                 }
+
             }catch(Exception e){
-                System.out.println("\n======== INVALID INPUT =========\n=       Enter [1] or [2]       =\n================================\n");
-                scanInput.nextLine();
+                System.out.println("""
+                        ======== INVALID INPUT =========
+                        =       Enter [1] or [2]       =
+                        ================================
+                        """);
             }
         }
     }
@@ -60,19 +102,32 @@ public class Chairman extends Employee{
             for(Member member : Database.getMemberList()){
                 if(input.equals(member.getName())){
                     System.out.println("\n======== CHANGE STATUS =========\n= [1] active                   =\n= [2] passive                  =\n================================\n");
-                    int inputInt = scanner.nextInt();
-                    if(inputInt == 1) {
-                        member.getMembership().setStatus(true);
-                        Database.updateDBFile();
-                        System.out.println("\nThe member's status has been changed to \"active\".");
-                    } else if(inputInt == 2) {
-                        member.getMembership().setStatus(false);
-                        System.out.println("The member's status has been changed to \"passive\"");
-                        Database.updateDBFile();
+                    if(scanner.hasNextInt()) {
+                        int inputInt = scanner.nextInt();
+                        if (inputInt == 1) {
+                            member.getMembership().setStatus(true);
+                            Database.updateDBFile();
+                            System.out.println("\nThe member's status has been changed to \"active\".");
+                        } else if (inputInt == 2) {
+                            member.getMembership().setStatus(false);
+                            System.out.println("The member's status has been changed to \"passive\"");
+                            Database.updateDBFile();
+                        }
+                    }else {
+                        scanner.nextLine();
+                        System.out.println("""
+                    ======== INVALID INPUT =========
+                    =       Enter [1] or [2]       =
+                    ================================
+                    """);
                     }
                 }
             } } catch (Exception e){
-            System.out.println("\n======== INVALID INPUT =========\n=       Enter [1] or [2]       =\n================================\n");
+            System.out.println("""
+                    ======== INVALID INPUT =========
+                    =       Enter [1] or [2]       =
+                    ================================
+                    """);
             scanner.nextInt();
         }
     }

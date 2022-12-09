@@ -1,3 +1,6 @@
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*; //(?)
 public class Coach extends Employee {
     private Discipline discipline;
@@ -13,7 +16,20 @@ public class Coach extends Employee {
         populateCoachStudentList(discipline);
         printMenu();
         Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
+        int input = 10124;
+        while(input == 10124){
+            if(scanner.hasNextInt()){
+                input = scanner.nextInt();
+            }else{
+                scanner.nextLine();
+                System.out.println("""
+                        =========INVALID INPUT==========
+                        =  Enter [1], [2], [3] or [4]  =
+                        ================================
+                        """);
+            }
+
+        }
 
         while (input != 0) {
             try {
@@ -22,7 +38,11 @@ public class Coach extends Employee {
                         printPopulateCoachStudentList();
                         break;
                     case 2: //Add training or view trainings
-                        System.out.println("========================================\n=  Do you want to View [1] or add [2]  =\n========================================");
+                        System.out.println("""
+                                ===========================
+                                =  [1] View trainings     =
+                                =  [2] Add training       =
+                                ===========================""");
                         input = scanner.nextInt();
                         switch (input) {
                             case 1: //view training list
@@ -40,7 +60,13 @@ public class Coach extends Employee {
                         }
                         break;
                     case 3:
-                        System.out.println("==============================================================\n=  Do you want to View [1], add [2], edit [3] or delete [4]  =\n==============================================================");
+                        System.out.println("""
+                                ===========================
+                                =  [1] View events        =
+                                =  [2] Add event          =
+                                =  [3] Edit event         =
+                                =  [4] Delete event       =
+                                ===========================""");
                         input = scanner.nextInt();
                         switch (input) {
                             case 1: //view
@@ -55,26 +81,14 @@ public class Coach extends Employee {
                                     e.getStackTrace();
                                 }
                                 break;
-                            case 3:
-                                //edit
-                                System.out.println("===========================================================\n=  Do you want to add time [1], position [2] or both [3]  =\n===========================================================");
-                                input = scanner.nextInt();
-                                switch (input) {
-                                    case 1: //edit time
-                                        addTimeToEvent();
-                                        break;
-                                    case 2: //edit position
-                                        addPositionToEvent();
-                                        break;
-                                    case 3:
-                                        addTimeAndPositionToEvent();
-                                        break;
-                                }
+                            case 3: //edit
+                                addTimeAndPositionToEvent();
                                 break;
+
                             case 4:
                                 deleteEvent();
                                 break;
-                        }
+                            }
                         //event
                         break;
                     case 4: //top 5 swimmers
@@ -87,7 +101,11 @@ public class Coach extends Employee {
                 printMenu();
                 input = scanner.nextInt();
             }catch(Exception e){
-                System.out.println("\n=========INVALID INPUT==========\n=    Enter [1], [2], [3] or [4]    =\n================================\n");
+                System.out.println("""
+                        =========INVALID INPUT===============
+                        =  Enter [1], [2], [3], [4] or [0]  =
+                        =====================================
+                        """);
                 scanner.nextInt();
             }
         }
@@ -209,44 +227,6 @@ public class Coach extends Employee {
         return null;
     }
 
-    public void addTimeToEvent() {
-        try{
-            Scanner scanner = new Scanner(System.in);
-            CompSwimmer compS = getSwimmerByName();
-            if (compS == null) {
-                System.out.println("==== Member does not exist ====");
-            } else {
-                System.out.println("\n==============================\n=    ENTER NAME OF EVENT     =\n==============================\n");
-                String eventName = scanner.nextLine();
-                System.out.println("\n==============================\n=     ENTER TIME TO ADD      =\n=        [MM-SS-MS]          =\n==============================\n");
-                String time = scanner.nextLine();
-                compS.addTime(eventName, time);
-                System.out.println("==== Time successfully added ====");
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void addPositionToEvent() {
-        try{
-            Scanner scanner = new Scanner(System.in);
-            CompSwimmer compS = getSwimmerByName();
-            if(compS == null){
-                System.out.println("==== Could not find swimmer ====");
-            }else {
-                System.out.println("\n==============================\n=    ENTER NAME OF EVENT     =\n==============================\n");
-                String eventName = scanner.nextLine();
-                System.out.println("\n==============================\n=       ENTER POSITION       =\n==============================\n");
-                int position = scanner.nextInt();
-                compS.addPosition(eventName, position);
-                System.out.println("==== Position successfully added ====");
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
     public void addTimeAndPositionToEvent() {
         try{
             Scanner scanner = new Scanner(System.in);
@@ -254,11 +234,24 @@ public class Coach extends Employee {
             if(compS == null){
                 System.out.println("==== Could not find swimmer ====");
             }else {
-                System.out.println("\n==============================\n=    ENTER NAME OF EVENT     =\n==============================\n");
+                System.out.println("""
+                        ==============================
+                        =    ENTER NAME OF EVENT     =
+                        ==============================
+                        """);
                 String eventName = scanner.nextLine();
-                System.out.println("\n==============================\n=       ENTER POSITION       =\n==============================\n");
+                System.out.println("""
+                        ==============================
+                        =       ENTER POSITION       =
+                        ==============================
+                        """);
                 int position = scanner.nextInt();
-                System.out.println("\n==============================\n=     ENTER TIME TO ADD      =\n=        [MM-SS-MS]          =\n==============================\n");
+                System.out.println("""
+                        ==============================
+                        =     ENTER TIME TO ADD      =
+                        =        [MM:SS:MS]          =
+                        ==============================
+                        """);
                 String time = scanner.next();
                 compS.addTimeAndPosition(eventName, position, time);
                 System.out.println("==== Time and position successfully added ====");
@@ -292,10 +285,13 @@ public class Coach extends Employee {
             if(compS == null) {
                 System.out.println("==== Could not find swimmer ====");
             }else {
-                System.out.println("\n==============================\n=    ENTER NAME OF EVENT     =\n==============================\n");
+                System.out.println("""
+                        ==============================
+                        =    ENTER NAME OF EVENT     =
+                        ==============================
+                        """);
                 String eventName = scanner.nextLine();
-                System.out.println("\n==============================\n=    ENTER DATE OF EVENT     =\n=       [DD-MM-YYYY]         =\n==============================\n");
-                String date = scanner.nextLine();
+                String date = getValidDateInput();
                 compS.addEvent(eventName, date);
                 System.out.println("==== Event successfully added ====");
             }
@@ -326,5 +322,38 @@ public class Coach extends Employee {
             e.printStackTrace();
         }
 
+    }
+
+    public String getValidDateInput(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("""
+                ===========BIRTHDAY===========
+                =         dd-mm-yyyy         =
+                ==============================
+                """);
+        String inputBirthday = scanner.nextLine();
+        while(!isValid(inputBirthday)) {
+            System.out.println("""
+                ================================
+                =        Invalid input         =
+                =   Enter format: dd-mm-yyyy   =
+                ================================
+                """);
+            inputBirthday = scanner.nextLine();
+        }
+
+        return inputBirthday;
+    }
+
+    public boolean isValid(String dateStr) {
+
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
     }
 }

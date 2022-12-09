@@ -4,15 +4,27 @@ public class Cashier extends Employee {
         super(id);
     }
 
-    public static void printCashierMenu(){
+    public void printCashierMenu(){
         System.out.println("\n============ MENU ============\n= [1] Overdue Invoices       =\n= [2] Expected Income        =\n= [3] Actual Income          =\n= [4] Change Payment Status  =\n= [0] Log Out                =\n==============================\n");
     }
 
-    public static void cashierMenu() {
+    public void cashierMenu() {
         printCashierMenu();
         Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
+        int input = 10154;
+        while(input == 10154){
+            if(scanner.hasNextInt()){
+                input = scanner.nextInt();
+            }else{
+                scanner.nextLine();
+                System.out.println("""
+                        =========INVALID INPUT==============
+                        =  Enter [1], [2], [3], [4] or [0] =
+                        ====================================
+                        """);
+            }
 
+        }
         while (input != 0) {
             switch (input) {
                 case 1:
